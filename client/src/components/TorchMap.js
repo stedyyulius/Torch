@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import { divIcon, icon } from 'leaflet';
+import { icon } from 'leaflet';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import axios from 'axios'
 
-const Jakarta = [-6.2, 106.8689];
+const Current = [-6.260708, 106.781617];
 var Terminal = icon({
     iconUrl: 'http://www.qlue.co.id/vacancy/svc/icon-marker.png',
     iconSize: [30, 30],
@@ -12,16 +12,6 @@ var Terminal = icon({
     shadowSize: [68, 95],
     shadowAnchor: [22, 94]
 });
-
-var Traffic = icon({
-    iconUrl: 'http://www.freeiconspng.com/uploads/traffic-icon-1.png',
-    iconSize: [30, 30],
-    iconAnchor: [22, 94],
-    popupAnchor: [-3, -76],
-    shadowSize: [68, 95],
-    shadowAnchor: [22, 94]
-});
-
 
 class TorchMap extends Component {
   constructor(props){
@@ -50,7 +40,7 @@ class TorchMap extends Component {
 
           </ul>
         </div>
-        <Map center={Jakarta} zoom={12}>
+        <Map center={Current} zoom={16}>
           <TileLayer
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
