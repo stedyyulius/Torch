@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
+    "leaflet": "^1.2.0",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "react-leaflet": "^1.7.1"
   },
   "devDependencies": {
     "react-scripts": "1.0.14"
