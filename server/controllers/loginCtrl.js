@@ -3,15 +3,16 @@ let Staff = require('../models/staff')
 let helper = require('../helpers/login')
 
 const login = (req,res) => {
-  if (typeof req.body.email === 'undefined') res.send({err: 'Email must be filled'})
-  else if (typeof req.body.password === 'undefined') res.send({err: 'Password must be filled'})
+  if (typeof req.body.name === 'undefined') res.send({err: 'Name must be filled'})
+  // else if (typeof req.body.password === 'undefined') res.send({err: 'Password must be filled'})
   else {
-    let email = req.body.email
-    let password = req.body.password
+    let name = req.body.name
+    let password = req.body.password || ''
+    let email = req.body.email || ''
     let token = ''
 
-    User.findOne({email: email},
-      (err,user) => {
+    User.findOne({name: name},
+      (err, user) => {
         if (err || user === null) {
 
           Staff.findOne({email: email}, (err, staff)=> {
@@ -29,13 +30,13 @@ const login = (req,res) => {
           })
 
         }
-        else if (!helper.checkPassword(password,user.password)) res.send({err: 'Invalid Email / Password'})
+        // else if (!helper.checkPassword(password,user.password)) res.send({err: 'Invalid Email / Password'})
         else {
           let userDt = {
             _id : user._id,
-            email: user.email,
+            // email: user.email,
             name: user.name,
-            profile_picture: user.profile_picture,
+            profile_picture: user.profile_picture || '',
             komsel: user.komsel
            }
           token = helper.createToken(userDt)
@@ -49,17 +50,17 @@ const login = (req,res) => {
 const register = (req,res) => {
 
   if (typeof req.body.name === 'undefined') res.send({err: 'Name must be filled'})
-  else if (typeof req.body.email === 'undefined') res.send({err: 'Email must be filled'})
-  else if (typeof req.body.password === 'undefined') res.send({err: 'Password must be filled'})
-  else if (typeof req.body.phone === 'undefined') res.send({err: 'Phone must be filled'})
-  else if (typeof req.body.profile_picture === 'undefined') res.send({err: 'Profile Picture must be filled'})
+  // else if (typeof req.body.email === 'undefined') res.send({err: 'Email must be filled'})
+  // else if (typeof req.body.password === 'undefined') res.send({err: 'Password must be filled'})
+  // else if (typeof req.body.phone === 'undefined') res.send({err: 'Phone must be filled'})
+  // else if (typeof req.body.profile_picture === 'undefined') res.send({err: 'Profile Picture must be filled'})
   else {
     let user = new User({
-      email: req.body.email,
-      password: req.body.password,
+      // email: req.body.email,
+      // password: req.body.password,
       name: req.body.name,
-      phone: req.body.phone,
-      profile_picture: req.body.profile_picture
+      // phone: req.body.phone,
+      profile_picture: req.body.profile_picture || ''
 
     })
 

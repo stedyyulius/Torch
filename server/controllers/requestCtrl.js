@@ -28,13 +28,13 @@ const getCreateKomsel = (req, res) => {
 const addJoinKomsel = (req, res) => {
   // let decoded = login.getUserDetail(req.headers.token)
   // let _user = decoded._id || ''
-  let email = req.body.email
-  User.findOne({email: email}, (err, user)=> {
+  let name = req.body.name
+  User.findOne({name: name}, (err, user)=> {
     if (err) res.send({err:'Invalid User'})
     else {
       let join = {}
 
-      join._requestor = _user
+      join._requestor = user._id
 
       if (typeof req.params.idKomsel !== 'undefined') join._komsel = req.params.idKomsel
 
@@ -49,8 +49,8 @@ const addJoinKomsel = (req, res) => {
 const addExitKomsel = (req, res) => {
   // let decoded = login.getUserDetail(req.headers.token)
   // let _user = decoded._id || ''
-  let email = req.body.email
-  User.findOne({email:email}, (err, user)=> {
+  let name = req.body.name
+  User.findOne({name:name}, (err, user)=> {
     if (err) res.send({err:'Invalid User'})
     else {
       let leave = {}

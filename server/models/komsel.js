@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let komselSchema = new Schema ({
+  image: String,
+  map_image: String,
   name: {type: String, required: [true, `{PATH} must be filled`]},
   isApproved: {type: Boolean, default: false},
   approvedBy: {type: Schema.Types.ObjectId, ref: 'Staff'},
@@ -18,10 +20,10 @@ let komselSchema = new Schema ({
     totalVote: {type: Number, default: 0},
     totalScore: {type: Number, default: 0},
   },
-  badge: {
-    descr:{type: Schema.Types.ObjectId, ref: 'Badge'},
-    unlockDate: {type: Date, default: Date.now}
-  },
+  // badge: {
+  //   descr:{type: Schema.Types.ObjectId, ref: 'Badge'},
+  //   unlockDate: {type: Date, default: Date.now}
+  // },
   poin: {type: Number, default: 0},
   poinHistory: [{
     poin: Number,
@@ -36,12 +38,15 @@ let komselSchema = new Schema ({
   }],
   // playHistory: [{type: Schema.Types.ObjectId, ref: 'Room'}],
   achievement: [{
-    descr: {type: Schema.Types.ObjectId, ref: 'Achievement'},
-    unlockDate: {type: Date, default: Date.now}
+    image: {type:String, default: 'https://imgur.com/j7QZ4c0'},
+    descr: String,
+    title: String,
+    createdDate: {type:Date, default: Date.now},
+    poin: Number
   }],
   member: [
     {
-      _member: {type: Schema.Types.ObjectId, ref: 'Member'},
+      _member: {type: Schema.Types.ObjectId, ref: 'User'},
       role: String,
       joinDate: {type: Date, default: Date.now}
     }
