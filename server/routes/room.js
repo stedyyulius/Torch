@@ -12,7 +12,7 @@ router.put('/:id', roomCtrl.editRoom) //ga bakal dicoba
 router.get('/search/:type', roomCtrl.searchRoom) //v online, offline ()
 // router.get('/open', roomCtrl.getOpenRoom) // gajadi
 router.put('/winner/:id', roomCtrl.editStatusPlayer) //v edit pemenang
-router.post('/participant/:id', roomCtrl.addPlayer) //v
+router.post('/participant/:id', roomCtrl.addPlayer) //v => maxmin belum di perketat pas join
 
 
 module.exports = router

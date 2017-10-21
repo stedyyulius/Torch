@@ -16,10 +16,10 @@ const getRoom = (req, res) => {
 }
 
 const addRoom = (req, res) => {
-  User.findOne({email: req.body.email}, (err,user)=> {
-    if (err) res.send({err:'Invalid User'})
-    else if (user !== null) {
-      let id = user._id
+  // User.findOne({email: req.body.email}, (err,user)=> {
+    // if (err) res.send({err:'Invalid User'})
+    // else if (user !== null) {
+      // let id = user._id
       let rules = {}
       let offline = {}
 
@@ -43,10 +43,12 @@ const addRoom = (req, res) => {
         isOnline: req.body.isOnline,
         name: req.body.name || 'no name room',
         image: req.body.image ||'',
-        creator: {
-          _komsel: req.body.komsel || '',
-          _user: id,
-        }
+        tipe: req.body.tipe || 'competition', //event ato competition
+        creator: req.body.email || '',
+        _creatorKomsel: req.body.creator_komsel,
+        creatorKomselName: req.body.creator_komsel_name || '',
+        descr: req.body.descr || ''
+
       }
       if (!(Object.keys(rules).length === 0 && rules.constructor === Object)) room.rules = rules
 
@@ -59,8 +61,8 @@ const addRoom = (req, res) => {
           res.send({err : err_msg.join(',')})
         } else res.send(n_room)
       })
-    } else res.send({err:'User not found'})
-  })
+    // } else res.send({err:'User not found'})
+  // })
 }
 
 const deleteRoom = (req, res) => {
@@ -99,18 +101,17 @@ const editStatusPlayer = (req, res) => {
       let winner = req.body.winner //komsel
       Room.findById(req.params.id, (err, room)=> {
         if (err) res.send({err:err})
+        else if (room === null) res.send({err:'room not found'})
         else {
           room._winner = winner
-          room.save((err,room) => {
-            if (err) {
-              res.send({err:err})
-            } else {
-              Game.findById(room._game, (err,game) => {
-                if (err) res.send({err:'Game not found'})
-                else {
-                  let poin = game.poin
+
+              // Game.findById(room._game, (err,game) => {
+                // if (err) res.send({err:'Game not found'})
+                // else {
+                  let poin = room.poin
                   Komsel.findById(room._winner, (err, komsel) => {
                     if (err) res.send({err:'Komsel not found'})
+                   else if(komsel === null) res.send({err:'Komsel not found'})
                     else {
                       if (typeof komsel.poin === 'undefined') komsel.poin = 0
                       komsel.poin = komsel.poin + poin
@@ -122,17 +123,24 @@ const editStatusPlayer = (req, res) => {
                         tag: 'add'
                       })
 
+                      room.winnerKomselName = komsel.name
+
                       komsel.save((err,komsel) => {
                         if (err) res.send({err:err})
-                        else res.send()
+                        else
+                          room.save((err,room) => {
+                            if (err) {
+                              res.send({err:err})
+                            } else res.send(room)
+                          })
                       })
                     }
                   })
-                }
+                // }
 
-              })
-            }
-          })
+              // })
+          //   }
+          // })
         }
       })
     // }

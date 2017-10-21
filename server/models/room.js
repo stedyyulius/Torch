@@ -2,14 +2,16 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 let roomSchema = new Schema ({
   name: String,
-  _game: {type: Schema.Types.ObjectId, ref: 'Game'},
+  isOnline: {type: Boolean, required: [true, `{PATH} must be filled`]},
+  creator: String,
+  name: {type: String, required: [true, `{PATH} must be filled`]},
+  descr: {type: String, required: [true, `{PATH} must be filled`]},
+  poin: {type: Number, default: 0},
   isOnline: Boolean,
   _winner: {type: Schema.Types.ObjectId, ref: 'Komsel'},
-  creator: {
-    _komsel: {type: Schema.Types.ObjectId, ref: 'Komsel'},
-    _user: {type: Schema.Types.ObjectId, ref: 'User'},
-    createdDate: {type: Date, default: Date.now}
-  },
+  winnerKomselName: String,
+  _creatorKomsel: {type: Schema.Types.ObjectId, ref: 'Komsel'},
+  creatorKomselName: String,
   rules: {
     maxUser: Number,
     minUser: Number,
@@ -26,7 +28,8 @@ let roomSchema = new Schema ({
     maxRegis: Date
   },
   image:String,
-  players: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  players: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  tipe: String //event sama kompetisi
 })
 
 let Room = mongoose.model('Room', roomSchema)
