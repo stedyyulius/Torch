@@ -45,7 +45,7 @@ class TorchMap extends Component {
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-        {(this.state.markers.length > 0 && this.state.terminalIcons === true)
+        {/* {(this.state.markers.length > 0 && this.state.terminalIcons === true)
          ?this.state.markers.map((m,index) => (
            <Marker
              key={index} 
@@ -61,8 +61,8 @@ class TorchMap extends Component {
           </Marker>          
         ))
         :<div></div>
-      }
-        {(this.state.waze.length > 0 && this.state.wazeIcons === true)
+      } */}
+        {/* {(this.state.waze.length > 0 && this.state.wazeIcons === true)
          ?this.state.waze.map((w,index) => (
            <Marker
              key={index} 
@@ -78,7 +78,7 @@ class TorchMap extends Component {
           </Marker>          
         ))
         :<div></div>
-      }
+      } */}
     </Map>
   </div>
     )
@@ -108,20 +108,20 @@ class TorchMap extends Component {
     }
   }
   
-  componentWillMount(){
-    axios.get(`http://www.qlue.co.id/vacancy/svc/getDataExample.php`)
-    .then(terminals=>{
-      this.setState({
-        markers: terminals.data
-      })
-    })
-    axios.get(`http://waze.qlue.id/jakarta/update/0atxn84I3hx2WmNm5ifPDZkJaLERZD9A.json`)
-    .then(waze=>{
-      this.setState({
-        waze: waze.data.alerts
-      })
-    })
-  }
+  // componentWillMount(){
+  //   axios.get(`http://www.qlue.co.id/vacancy/svc/getDataExample.php`)
+  //   .then(terminals=>{
+  //     this.setState({
+  //       markers: terminals.data
+  //     })
+  //   })
+  //   axios.get(`http://waze.qlue.id/jakarta/update/0atxn84I3hx2WmNm5ifPDZkJaLERZD9A.json`)
+  //   .then(waze=>{
+  //     this.setState({
+  //       waze: waze.data.alerts
+  //     })
+  //   })
+  // }
 }
 
 export default TorchMap

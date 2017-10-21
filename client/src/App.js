@@ -1,23 +1,31 @@
 import React, { Component } from 'react';
+import {BrowserRouter,Route,Switch} from 'react-router-dom'
+import {Provider} from 'react-redux'
 
-import TorchMap from './components/TorchMap'
-import Dashboard from './components/Dashboard'
+import Auth from './containers/Auth'
+import Main from './containers/Main'
 
-import './App.css';
+import store from './store'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="row">
-          <div className="col-md-9">
-            <TorchMap />
-          </div>
-          <div className="col-md-3">
-            <Dashboard />
-          </div>
+      <Provider store={store}>
+        <BrowserRouter>
+        <div>               
+          <Switch>        
+            <Route 
+            exact path="/login"
+            component={Auth}
+            />    
+            <Route
+            exact path="/"
+            component= {Main} />}       
+            />  
+          </Switch>
         </div>
-      </div>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

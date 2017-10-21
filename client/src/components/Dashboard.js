@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import '../styles/Dashboard.css'
 
 class Dashboard extends Component {
   render(){
     return(
-      <div className="panel panel-default">
+      <div className="panel panel-primary">
         <div className="panel-heading"></div>
         <div className="panel-body">Room Panel</div>
       </div>
