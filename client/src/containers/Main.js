@@ -59,7 +59,7 @@ class Main extends Component {
               : <li><a onClick={()=> this.terminalIcons()}><span>Show Activity</span></a></li>
               }
               <li>
-                <a data-toggle="modal" data-target="#AddGame"><span>Create Game</span></a>
+                <a data-toggle="modal" data-target="#AddGame"><span>Create Activity</span></a>
               </li>
               <li className="pull-right">
                 <a onClick={()=> this.logout()}><span>Logout</span></a>

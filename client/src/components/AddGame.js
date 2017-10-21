@@ -53,17 +53,17 @@ class AddGame extends React.Component {
   <div className="modal-content">
     <div className="modal-header">
       <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-      <h4 className="modal-title" id="myModalLabel">Add User</h4>
+      <h4 className="modal-title" id="myModalLabel">Create Activity</h4>
     </div>
     <div className="modal-body">
       <form>
 <div className="form-group">
-  <label htmlFor="exampleInputEmail1">Email address</label>
-  <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+  <label htmlFor="exampleInputEmail1">Activity Name</label>
+  <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Activity Name" />
 </div>
 <div className="form-group">
-  <label htmlFor="exampleInputPassword1">Password</label>
-  <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+  <label htmlFor="exampleInputPassword1">Prize</label>
+  <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Prize" />
 </div>
 <div className="form-group">
   <label htmlFor="exampleInputFile">File input</label>
@@ -86,20 +86,15 @@ class AddGame extends React.Component {
        lat={this.state.lat}
        lng={this.state.lng}
        src='http://www.clker.com/cliparts/l/a/V/x/F/r/house-icon-dark-green-hi.png'
-       alt="icon-home"
+       alt="icon-activity"
      />
    </GoogleMapReact>
-</div>
-<div className="checkbox">
-  <label>
-    <input type="checkbox" /> Check me out
-  </label>
 </div>
 </form>
     </div>
     <div className="modal-footer">
       <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-      <button type="button" className="btn btn-primary">Save changes</button>
+      <button type="button" className="btn btn-primary" data-dismiss="modal">Create</button>
     </div>
   </div>
 </div>
