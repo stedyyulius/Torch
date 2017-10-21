@@ -20,7 +20,8 @@ const addGame = (req, res) => {
     name: req.body.name || '',
     descr: req.body.descr || '',
     poin: req.body.poin || 0,
-    image: req.body.image || ''
+    image: req.body.image || '',
+    creator: req.body.creator
   }
   let n_game = new Game(game)
 
