@@ -55,7 +55,9 @@ class AddGame extends React.Component {
       descr: this.state.descr,
       poin: this.state.prize,
       image: this.state.image,
-      creator: cookie.load('user').name
+      creator: cookie.load('user').name,
+      lat: this.state.lat,
+      lng: this.state.lng
     }
     axios.post(`${api}/game`,game)
     .then(res=>{
