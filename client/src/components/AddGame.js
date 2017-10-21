@@ -82,6 +82,7 @@ class AddGame extends React.Component {
       <form>
         <div className="form-group">
           <select onChange={(e)=>this.setState({isOnline: e.target.value})}>
+            <option disabled>Select Game Type</option>
             <option value={false}>offline</option>
             <option value={true}>online</option>
           </select>
