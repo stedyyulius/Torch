@@ -17,7 +17,7 @@ class Main extends Component {
     }
   }
   
-  componentDidMount(){
+  componentWillMount(){
     if(!cookie.load('user')){
       window.location = '/login'
     }
@@ -82,7 +82,6 @@ class Main extends Component {
               </div>
             </div>
           </nav>
-
         </div>
         <div className="row">
           <div className="col-md-9">
