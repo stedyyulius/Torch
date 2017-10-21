@@ -19,27 +19,14 @@ class TorchMap extends Component {
     this.state={
       markers:{},
       waze: {},
-      terminalIcons: true,
-      wazeIcons: true
     }
   }
+  
+
   
   render(){
     return(
       <div>      
-      <div id='cssmenu'>
-          <ul>
-            {(this.state.wazeIcons === true)
-            ? <li><a onClick={()=> this.wazeIcons()}><span>Clear Traffic</span></a></li>
-            : <li><a onClick={()=> this.wazeIcons()}><span>Show Traffic</span></a></li>
-            }
-            {(this.state.terminalIcons === true)
-            ? <li><a onClick={()=> this.terminalIcons()}><span>Clear Terminals</span></a></li>
-            : <li><a onClick={()=> this.terminalIcons()}><span>Show Terminals</span></a></li>
-            }
-
-          </ul>
-        </div>
         <Map center={Current} zoom={16}>
           <TileLayer
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
@@ -83,30 +70,7 @@ class TorchMap extends Component {
   </div>
     )
   }
-  
-  wazeIcons(){
-    if(this.state.wazeIcons === false){
-      this.setState({
-        wazeIcons: true
-      })
-    } else{
-      this.setState({
-        wazeIcons: false
-      })
-    }
-  }
-  
-  terminalIcons(){
-    if(this.state.terminalIcons === false){
-      this.setState({
-        terminalIcons: true
-      })
-    } else{
-      this.setState({
-        terminalIcons: false
-      })
-    }
-  }
+
   
   // componentWillMount(){
   //   axios.get(`http://www.qlue.co.id/vacancy/svc/getDataExample.php`)
