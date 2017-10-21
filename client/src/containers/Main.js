@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import cookie from 'react-cookies'
+import brand from '../logotorch.png'
 
 import TorchMap from '../components/TorchMap'
 import Dashboard from '../components/Dashboard'
@@ -56,22 +57,33 @@ class Main extends Component {
     return (
       <div className="App">
         <AddGame />
-        <div id='cssmenu'>
-            <ul>
-              <li><a><span>TORCH</span></a></li>
-              {(this.state.wazeIcons === true)
-              ? <li><a onClick={()=> this.wazeIcons()}><span>Clear Komsel</span></a></li>
-              : <li><a onClick={()=> this.wazeIcons()}><span>Show Komsel</span></a></li>
-              }
-              {(this.state.terminalIcons === true)
-              ? <li><a onClick={()=> this.terminalIcons()}><span>Clear Activity</span></a></li>
-              : <li><a onClick={()=> this.terminalIcons()}><span>Show Activity</span></a></li>
-              }
-              <li className="pull-right">
-                <a onClick={()=> this.logout()}><span>Logout</span></a>
-              </li>
-            </ul>
-          </div>
+        <div>
+          <nav className="navbar navbar-inverse">
+            <div className="container-fluid">
+              <div className="navbar-header">
+                <a class="navbar-brand" href="#"><img src="https://i.imgur.com/HUIETSB.png" alt="TORCH" /></a>
+              </div>
+              <div className="navbar-collapse collapse">
+                <ul className="nav navbar-nav">
+                {(this.state.wazeIcons === true)
+                  ? <li><a onClick={()=> this.wazeIcons()}><span>Clear Komsel</span></a></li>
+                  : <li><a onClick={()=> this.wazeIcons()}><span>Show Komsel</span></a></li>
+                  }
+                  {(this.state.terminalIcons === true)
+                  ? <li><a onClick={()=> this.terminalIcons()}><span>Clear Activity</span></a></li>
+                  : <li><a onClick={()=> this.terminalIcons()}><span>Show Activity</span></a></li>
+                  }
+                </ul>
+                <ul className="nav navbar-nav pull-right">
+                  <li><img src={cookie.load('user').picture.data.url} className="img-circle" alt="Cinque Terre" /></li>
+                  <li><a><span>{cookie.load('user').name}</span></a></li>                  
+                  <li><a onClick={()=> this.logout()}><span>Logout</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+        </div>
         <div className="row">
           <div className="col-md-9">
             <TorchMap />
