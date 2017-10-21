@@ -7,11 +7,10 @@ let roomSchema = new Schema ({
   name: {type: String, required: [true, `{PATH} must be filled`]},
   descr: {type: String, required: [true, `{PATH} must be filled`]},
   poin: {type: Number, default: 0},
-  isOnline: Boolean,
   _winner: {type: Schema.Types.ObjectId, ref: 'Komsel'},
   winnerKomselName: String,
-  _creatorKomsel: {type: Schema.Types.ObjectId, ref: 'Komsel'},
-  creatorKomselName: String,
+  // _creatorKomsel: {type: Schema.Types.ObjectId, ref: 'Komsel'},
+  // creatorKomselName: String,
   rules: {
     maxUser: Number,
     minUser: Number,
