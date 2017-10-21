@@ -58,18 +58,18 @@ const editKomsel = (req, res) => {
   let id = req.params.id
 
   Komsel.findById(id, (err, komsel) => {
-    if(err) res.send({err: 'Invalid Komsel'})
+    if (err) res.send({err: 'Invalid Komsel'})
     else {
-      if (typeof req.body.email !== 'undefined') komsel.email = req.body.email
-      if (typeof req.body.username !== 'undefined') komsel.username = req.body.username
-      if (typeof req.body.password !== 'undefined') komsel.password = req.body.password
+      let location = komsel.location || {}
+      if (typeof req.body.name !== 'undefined') komsel.name = req.body.name
+      if (typeof req.body.theme !== 'undefined') komsel.theme = req.body.theme
+      if (typeof req.body.lng !== 'undefined') location.lng = req.body.lng
+      if (typeof req.body.lat !== 'undefined') location.lat = req.body.lat
+      if (typeof req.body.city !== 'undefined') location.city = req.body.city
+      if (typeof req.body.church !== 'undefined') komsel.church = req.body._church
 
-      komsel.save((err, n_komsel) => {
-        if (err) {
-          let err_msg = []
-          for (let error in err.errors) err_msg.push(err.errors[error].message)
-          res.send({err : err_msg.join(',')})
-        } else res.send(n_komsel)
+      komsel.save((err, komsel) => {
+        res.send(err? {err:err} : komsel)
       })
     }
   })
@@ -103,12 +103,12 @@ const editLeader = (req, res) => {
 
   if (typeof req.body.leader === 'undefined') res.send({err:'Please choose the next leader'})
   else {
-    Komsel.find({_leader:user}, (err, komsel) => {
+    Komsel.findOne({_leader:user}, (err, komsel) => {
       if (err) res.send({err: 'You dont have access to change the leader'})
       else {
         komsel._leader = req.body.leader
-        komsel.save((err, n_leader) => {
-          res.send(err? {err:err} : n_leader)
+        komsel.save((err, n_leader_komsel) => {
+          res.send(err? {err: err} : n_leader_komsel)
         })
       }
     })

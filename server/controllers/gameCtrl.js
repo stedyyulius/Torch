@@ -19,7 +19,8 @@ const addGame = (req, res) => {
     isOnline: req.body.isOnline || '',
     name: req.body.name || '',
     descr: req.body.descr || '',
-    poin: req.body.poin || 0
+    poin: req.body.poin || 0,
+    image: req.body.image || ''
   }
   let n_game = new Game(game)
 
@@ -51,6 +52,7 @@ const editGame = (req, res) => {
       if (typeof req.body.name !== 'undefined') game.name = req.body.name
       if (typeof req.body.descr !== 'undefined') game.descr = req.body.descr
       if (typeof req.body.poin !== 'undefined') game.poin = req.body.poin
+      if (typeof req.body.image !== 'undefined') game.image = req.body.image
 
       game.save((err, n_game) => {
         if (err) {
