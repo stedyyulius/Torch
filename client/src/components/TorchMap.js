@@ -36,6 +36,7 @@ class TorchMap extends Component {
   }
   
   componentDidMount(){
+    this.props.getRooms()
     axios.get(`${api}/komsel`)
     .then(res=>{
       this.setState({
@@ -61,7 +62,7 @@ class TorchMap extends Component {
              position={[+k.location.lat,+k.location.lng]}
              icon={icon({
                  iconUrl: k.image,
-                 iconSize: [130, 130],
+                 iconSize: [70, 70],
                  iconAnchor: [22, 94],
                  popupAnchor: [-3, -76],
                  shadowSize: [68, 95],
@@ -78,7 +79,7 @@ class TorchMap extends Component {
              </Popup>
           </Marker>  
          ))}
-        {(this.props.rooms)
+        {(this.props.rooms && this.props.isActive === true)
          ?this.props.rooms.map((m,index) => (
            <Marker
              key={index} 
@@ -116,15 +117,12 @@ class TorchMap extends Component {
   </div>
     )
   }
-  
-  componentDidMount(){
-    this.props.getRooms()
-  }
 }
 
 const mapStateToProps = (state) =>{
   return{
-    rooms: state.rooms
+    rooms: state.rooms,
+    isActive: state.isActive
   }
 }
 

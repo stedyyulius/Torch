@@ -63,14 +63,13 @@ class AddGame extends React.Component {
     }
     axios.post(`${api}/room`,game)
     .then(res=>{
-      
+      this.props.getRooms()
       console.log(res);
     })
   }
   
   render () {
-    return (
-      
+    return (  
 <div className="modal" id="AddGame" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div className="modal-dialog">
   <div className="modal-content">
@@ -82,7 +81,7 @@ class AddGame extends React.Component {
       <form>
         <div className="form-group">
           <select onChange={(e)=>this.setState({isOnline: e.target.value})}>
-            <option disabled>Select Game Type</option>
+            <option selected disabled>Select Game Type</option>
             <option value={false}>offline</option>
             <option value={true}>online</option>
           </select>

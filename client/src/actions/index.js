@@ -41,9 +41,18 @@ const getOneData = (data) =>{
     payload: data
   }
 }
+
+const isActivity = (status) =>{
+  return{
+    type: 'isActivity',
+    payload: status
+  }
+}
+
 export{
   isCheck,
   getRooms,
   gameList,
-  getOneData  
+  getOneData,
+  isActivity  
 }
