@@ -6,7 +6,7 @@ let roomSchema = new Schema ({
   creator: {
     _komsel: {type: Schema.Types.ObjectId, ref: 'Komsel'},
     _user: {type: Schema.Types.ObjectId, ref: 'User'},
-    createdDate: {type: Date, default: new Date()}
+    createdDate: {type: Date, default: Date.now}
   },
   rules: {
     maxUser: Number,
