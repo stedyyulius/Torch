@@ -80,8 +80,8 @@ class AddGame extends React.Component {
     <div className="modal-body">
       <form>
         <div className="form-group">
-          <select onChange={(e)=>this.setState({isOnline: e.target.value})}>
-            <option selected disabled>Select Game Type</option>
+          <select defaultValue="Select Game Type" onChange={(e)=>this.setState({isOnline: e.target.value})}>
+            <option disabled>Select Game Type</option>
             <option value={false}>offline</option>
             <option value={true}>online</option>
           </select>

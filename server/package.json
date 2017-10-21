@@ -18,6 +18,8 @@
     "geocoder": "^0.2.3",
     "google-map-react": "^0.24.0",
     "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.12.3"
+    "mongoose": "^4.12.3",
+    "nodemailer": "^4.2.0",
+    "nodemailer-smtp-transport": "^2.7.4"
   }
 }

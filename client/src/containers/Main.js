@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 
 import TorchMap from '../components/TorchMap'
 import Dashboard from '../components/Dashboard'
-import AddGame from '../components/AddGame'
 
 import '../App.css';
 
@@ -63,7 +62,6 @@ class Main extends Component {
   render() {
     return (
       <div className="App">
-        <AddGame />
         <div>
           <nav className="navbar navbar-inverse">
             <div className="container-fluid">
@@ -73,15 +71,15 @@ class Main extends Component {
               <div className="navbar-collapse collapse">
                 <ul className="nav navbar-nav">
                 {(this.state.wazeIcons === true)
-                  ? <li><a onClick={()=> this.wazeIcons()}><span>Clear Komsel</span></a></li>
-                  : <li><a onClick={()=> this.wazeIcons()}><span>Show Komsel</span></a></li>
+                  ? <li><a onClick={()=> this.wazeIcons()}><span className="navtext">Clear Komsel</span></a></li>
+                  : <li><a onClick={()=> this.wazeIcons()}><span className="navtext">Show Komsel</span></a></li>
                   }
                   {(this.state.terminalIcons === true)
-                  ? <li><a onClick={()=> this.terminalIcons()}><span>Clear Activity</span></a></li>
-                  : <li><a onClick={()=> this.terminalIcons()}><span>Show Activity</span></a></li>
+                  ? <li><a onClick={()=> this.terminalIcons()}><span className="navtext">Clear Activity</span></a></li>
+                  : <li><a onClick={()=> this.terminalIcons()}><span className="navtext">Show Activity</span></a></li>
                   }
                   <li className="dropdown">
-                    <a className="dropdown-toggle" data-toggle="dropdown" href="#">Achievement<span className="caret"></span></a>
+                    <a className="dropdown-toggle" data-toggle="dropdown"><span className="navtext">Achievement</span></a>
                     <ul className="dropdown-menu">
                       <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> New Member<span className="w3-margin-left w3-badge w3-red"> 1</span></a></li>
                       <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Score Game Player (Monthly)<span className="w3-margin-left w3-badge w3-red"> 2</span></a></li>
@@ -99,8 +97,8 @@ class Main extends Component {
                 </ul>
                 <ul className="nav navbar-nav pull-right">
                   <li><img src={cookie.load('user').picture.data.url} className="img-circle" alt="Cinque Terre" /></li>
-                  <li><a><span>{cookie.load('user').name}</span></a></li>                  
-                  <li><a onClick={()=> this.logout()}><span>Logout</span></a></li>
+                  <li><a><span className="navtext">{cookie.load('user').name}</span></a></li>                  
+                  <li><a onClick={()=> this.logout()}><span className="navtext">Logout</span></a></li>
                 </ul>
               </div>
             </div>

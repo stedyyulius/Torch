@@ -3,11 +3,13 @@ import { icon } from 'leaflet';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import axios from 'axios'
 import { connect } from 'react-redux'
+import cookie from 'react-cookies'
 
 import { getRooms } from '../actions/index'
 import { api } from '../config'
 
 const Current = [-6.260708, 106.781617];
+
 var Activity = icon({
     iconUrl: 'https://i.imgur.com/EBgsrAe.png',
     iconSize: [30, 30],
@@ -39,8 +41,28 @@ class TorchMap extends Component {
     this.props.getRooms()
     axios.get(`${api}/komsel`)
     .then(res=>{
+      console.log(res);
       this.setState({
         komsel: res.data
+      })
+    })
+  }
+  
+  requestJoin(id){
+    console.log(id);
+    let data = {
+      name: cookie.load('user').name
+    }
+    console.log(data);
+    axios.post(`${api}/request/komsel/join/${id}`,data)
+    .then(response=>{
+      console.log(response);
+      axios.get(`${api}/komsel`)
+      .then(res=>{
+        console.log(res);
+        this.setState({
+          komsel: res.data
+        })
       })
     })
   }
@@ -57,12 +79,14 @@ class TorchMap extends Component {
             position={[+Current[0],+Current[1]]}
             icon={Me}>
          </Marker>
+         <div className="tooltip-detail">
          {(this.props.isKomsel)
            ?  (this.state.komsel.map((k,i)=>
-              <Marker 
+              <Marker
+                key={i} 
                 position={[+k.location.lat,+k.location.lng]}
                 icon={icon({
-                    iconUrl: k.image,
+                    iconUrl: k.map_image,
                     iconSize: [70, 70],
                     iconAnchor: [22, 94],
                     popupAnchor: [-3, -76],
@@ -71,17 +95,25 @@ class TorchMap extends Component {
                 })}>
                 <Popup>
                   <span>
-                    <p>{k.poin}</p>
-                    <b>{k.name}</b>
-                    <br />
-                    <p>{k.theme}</p>
-                    <p>{k.ayat}</p>
+                    <span className="tooltip-detail">{k.poin} </span><br />
+                    <b className="tooltip-detail">{k.name}</b> <br />
+                    <img className="komsel tooltip-detail" src={k.image} /> <br />
+                    <span className="tooltip-detail">{k.theme}</span><br />
+                    <span className="tooltip-detail">{k.ayat}</span>
+                    <hr />
+                    <span className="leader">{k._leader.name}</span>
+                    {(k.member.map((m,index)=>
+                      <div key={index}><b>{m._member.name}</b><br /></div>
+                    ))}
+                    <hr />
+                    <button className="btn btn-success tooltip-detail" onClick={()=> this.requestJoin(k._id)}>Join</button>
                   </span>
                 </Popup>
              </Marker>  
             ))
            : null
-         }        
+         }    
+       </div>    
         {(this.props.rooms && this.props.isActive === true)
          ?this.props.rooms.map((m,index) => (
            <Marker
@@ -99,23 +131,6 @@ class TorchMap extends Component {
         ))
         :<div></div>
       }
-        {/* {(this.state.waze.length > 0 && this.state.wazeIcons === true)
-         ?this.state.waze.map((w,index) => (
-           <Marker
-             key={index} 
-             position={[w.location.y,w.location.x]}
-             >
-            <Popup>
-              <span>
-                <b>{w.street}</b>
-                <br />
-                {w.subtype}
-              </span>
-            </Popup>
-          </Marker>          
-        ))
-        :<div></div>
-      } */}
     </Map>
   </div>
     )

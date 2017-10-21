@@ -3,7 +3,17 @@ let User = require('../models/user')
 let RequestJoinKomsel = require('../models/requestJoinKomsel')
 let RequestExitKomsel = require('../models/requestExitKomsel')
 let login = require('../helpers/login')
-// let request = require('../helpers/request')
+
+var nodemailer = require("nodemailer");
+var smtpTransport = require('nodemailer-smtp-transport');
+require('dotenv').config()
+var transport = nodemailer.createTransport(smtpTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.HELLO,
+        pass: process.env.WORLD
+    }
+}));
 
 const getJoinKomsel = (req, res) => {
   RequestJoinKomsel.find((err,joins) => {
@@ -39,14 +49,35 @@ const addJoinKomsel = (req, res) => {
         poin: req.body.poin || 0
       }
 
-
-
       if (typeof req.params.idKomsel !== 'undefined') join._komsel = req.params.idKomsel
 
       let requestJoin = new RequestJoinKomsel(join)
+
       requestJoin.save((err, n_join) => {
-        // request.sendEmail('')
-        res.send(err ? {err:err} : n_join)
+        if (err) res.send({err:err})
+        else {
+          var job = {
+            from:`Torch <TORCH@gmail.com>`,
+            to: `stedy.yulius@orori.com`,
+            subject: `Request join from ${req.body.name}`,
+            text: 'Request',
+            html: `<button onclick="accept()" class=btn btn-primary>Accept</button><button class=btn btn-danger>Reject</button>`
+          }
+
+          transport.sendMail(job, (error, info) => {
+            if (error) {
+              console.log(error);
+              res.send(error);
+            }
+            else{
+              console.log(`sukses`);
+              res.send('success!')
+            }
+          });
+          // request.sendEmail('')
+          // res.send(err ? {err:err} : n_join)
+
+        }
       })
     // }
   // })
