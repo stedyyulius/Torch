@@ -116,7 +116,7 @@ class AddGame extends React.Component {
        style={{width:20,height:20}}
        lat={this.state.lat}
        lng={this.state.lng}
-       src='http://www.clker.com/cliparts/l/a/V/x/F/r/house-icon-dark-green-hi.png'
+       src='https://i.imgur.com/EBgsrAe.png'
        alt="icon-activity"
      />
    </GoogleMapReact>
