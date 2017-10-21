@@ -33,6 +33,39 @@ class TorchMap extends Component {
       rooms:[],
     }
   }
+  
+  komselList(){
+    let komsel = []
+    axios.get(`${api}/komsel`)
+    .then(res=>{
+      console.log(res);
+      for(let i = 0; i < res.data.length; i++){
+        let Komsel = icon({
+            iconUrl: res.data[i].image,
+            iconSize: [130, 130],
+            iconAnchor: [22, 94],
+            popupAnchor: [-3, -76],
+            shadowSize: [68, 95],
+            shadowAnchor: [22, 94]
+        });
+        komsel.push(
+          <Marker 
+            position={[+res.data[i].location.lat,+res.data[i].location.lng]}
+            icon={Komsel}>
+            <Popup>
+              <span>
+                <p>{res.data[i].poin}</p>
+                <b>{res.data[i].name}</b>
+                <br />
+                <p>{res.data[i].theme}</p>
+                <p>{res.data[i].ayat}</p>
+              </span>
+            </Popup>
+         </Marker>  
+      )
+    }})
+    return komsel
+  }
 
   render(){
     return(
@@ -45,7 +78,8 @@ class TorchMap extends Component {
           <Marker 
             position={[+Current[0],+Current[1]]}
             icon={Me}>
-         </Marker>  
+         </Marker>
+         {this.komselList()}
         {(this.props.rooms)
          ?this.props.rooms.map((m,index) => (
            <Marker
