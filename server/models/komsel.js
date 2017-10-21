@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let komselSchema = new Schema ({
+  image: String,
   name: {type: String, required: [true, `{PATH} must be filled`]},
   isApproved: {type: Boolean, default: false},
   approvedBy: {type: Schema.Types.ObjectId, ref: 'Staff'},
@@ -18,10 +19,10 @@ let komselSchema = new Schema ({
     totalVote: {type: Number, default: 0},
     totalScore: {type: Number, default: 0},
   },
-  badge: {
-    descr:{type: Schema.Types.ObjectId, ref: 'Badge'},
-    unlockDate: {type: Date, default: Date.now}
-  },
+  // badge: {
+  //   descr:{type: Schema.Types.ObjectId, ref: 'Badge'},
+  //   unlockDate: {type: Date, default: Date.now}
+  // },
   poin: {type: Number, default: 0},
   poinHistory: [{
     poin: Number,
