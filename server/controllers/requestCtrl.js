@@ -3,6 +3,7 @@ let User = require('../models/user')
 let RequestJoinKomsel = require('../models/requestJoinKomsel')
 let RequestExitKomsel = require('../models/requestExitKomsel')
 let login = require('../helpers/login')
+// let request = require('../helpers/request')
 
 const getJoinKomsel = (req, res) => {
   RequestJoinKomsel.find((err,joins) => {
@@ -29,21 +30,26 @@ const addJoinKomsel = (req, res) => {
   // let decoded = login.getUserDetail(req.headers.token)
   // let _user = decoded._id || ''
   let name = req.body.name
-  User.findOne({name: name}, (err, user)=> {
-    if (err) res.send({err:'Invalid User'})
-    else {
-      let join = {}
+  // User.findOne({name: name}, (err, user)=> {
+    // if (err) res.send({err:'Invalid User'})
+    // else {
+      let join = {
+        request: name,
+        profile_picture: req.body.profile_picture || '',
+        poin: req.body.poin || 0
+      }
 
-      join._requestor = user._id
+
 
       if (typeof req.params.idKomsel !== 'undefined') join._komsel = req.params.idKomsel
 
       let requestJoin = new RequestJoinKomsel(join)
       requestJoin.save((err, n_join) => {
+        // request.sendEmail('')
         res.send(err ? {err:err} : n_join)
       })
-    }
-  })
+    // }
+  // })
 }
 
 const addExitKomsel = (req, res) => {

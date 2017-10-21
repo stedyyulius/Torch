@@ -46,7 +46,13 @@ let komselSchema = new Schema ({
   }],
   member: [
     {
-      _member: {type: Schema.Types.ObjectId, ref: 'User'},
+      _member: {
+        name: String,
+        poin: {type: Number, default: 0},
+        profile_picture: String
+        // profile_picture: String
+      },
+      // _member: {type: Schema.Types.ObjectId, ref: 'User'},
       role: String,
       joinDate: {type: Date, default: Date.now}
     }

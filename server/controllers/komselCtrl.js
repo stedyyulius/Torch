@@ -10,7 +10,7 @@ let login = require('../helpers/login')
 
 const getKomsels = (req, res) => {
   Komsel.find()
-  .populate('member._member _leader')
+  .populate('_leader')
   .exec((err, komsels) => {
     res.send(err? {err:err}: komsels)
   })
@@ -20,7 +20,7 @@ const getKomsel = (req, res) => {
   let id = req.params.id
 
   Komsel.findById(id)
-  .populate('member._member _leader')
+  .populate('_leader')
   .exec((err, komsel) => {
     // if (typeof komsel.badge !== 'undefined') {
     //   Badge.findById(komsel.badge.descr, (err, badge)=>{
@@ -104,7 +104,6 @@ const editKomsel = (req, res) => {
         descr: req.body.bage
       }
       if (!(Object.keys(location).length === 0 && location.constructor === Object)) komsel.location = location
-
       komsel.save((err, komsel) => {
         res.send(err? {err:err} : komsel)
       })
@@ -170,31 +169,41 @@ const addMember = (req, res) => {
           if (typeof komsel.member === 'undefined') komsel.member = []
 
           let newMember =  {
-            _member: joinreq._requestor,
+            _member: {
+                name: joinreq.request,
+                poin: joinreq.poin || 0,
+                profile_picture: joinreq.profile_picture || ''
+              },
+            // _member: joinreq._requestor,
             role: 'member'
           }
 
+
           komsel.member.push(newMember)
+          // console.log(komsel.member)
+
           komsel.save((err, n_komsel) => {
             if (err) res.send({err:err})
             else {
-              // console.log(joinreq._requestor)
-              User.findById(joinreq._requestor, (err, user)=> {
-                if (err) res.send({err:err})
-                else if(user === null) res.send({err: 'Invalid user'})
-                else {
-                  if (typeof user.komsel === 'undefined') user.komsel = []
-                  user.komsel.push({
-                    _komsel: joinreq._komsel,
-                    role: 'member'
-                  })
-                  user.save((err, user) =>{
-                    joinreq.remove((err, deleted) => {
-                      res.send(err? {err:err} : deleted)
-                    })
-                  })
-                }
+              joinreq.remove((err, deleted) => {
+                res.send(err? {err:err} : deleted)
               })
+              // User.findOne({name: joinreq.request}, (err, user)=> {
+              //   if (err) res.send({err:err})
+              //   else if(user === null) res.send({err: 'Invalid user'})
+              //   else {
+              //     if (typeof user.komsel === 'undefined') user.komsel = []
+              //     user.komsel.push({
+              //       _komsel: joinreq._komsel,
+              //       role: 'member'
+              //     })
+              //     user.save((err, user) =>{
+              //       joinreq.remove((err, deleted) => {
+              //         res.send(err? {err:err} : deleted)
+              //       })
+              //     })
+              //   }
+              // })
             }
           })
         }
