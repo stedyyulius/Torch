@@ -3,48 +3,48 @@ let Staff = require('../models/staff')
 let helper = require('../helpers/login')
 
 const login = (req,res) => {
- if (typeof req.body.name === 'undefined') res.send({err: 'Name must be filled'})
- // else if (typeof req.body.password === 'undefined') res.send({err: 'Password must be filled'})
- else {
-   let name = req.body.name
-   let password = req.body.password || ''
-   let email = req.body.email || ''
-   let token = ''
+//  if (typeof req.body.name === 'undefined') res.send({err: 'Name must be filled'})
+//  // else if (typeof req.body.password === 'undefined') res.send({err: 'Password must be filled'})
+//  else {
+//    let name = req.body.name
+//    let password = req.body.password || ''
+//    let email = req.body.email || ''
+//    let token = ''
 
-   User.findOne({name: name},
-     (err, user) => {
-       if (err || user === null) {
+//   //  User.findOne({name: name},
+//   //    (err, user) => {
+//   //      if (err || user === null) {
 
-         Staff.findOne({email: email}, (err, staff)=> {
-           if (err) res.send({err:'Invalid Email / Password'})
-           else {
-             let staffDt = {
-              //  _id : staff._id,
-               email: staff.email,
-               username: staff.username,
-               role: 'staff'
-              }
-             token = helper.createToken(staffDt)
-             res.send({token: token})
-           }
-         })
+//   //        Staff.findOne({email: email}, (err, staff)=> {
+//   //          if (err) res.send({err:'Invalid Email / Password'})
+//   //          else {
+//   //            let staffDt = {
+//   //              _id : staff._id,
+//   //              email: staff.email,
+//   //              username: staff.username,
+//   //              role: 'staff'
+//   //             }
+//   //            token = helper.createToken(staffDt)
+//   //            res.send({token: token})
+//   //          }
+//   //        })
 
-       }
-       // else if (!helper.checkPassword(password,user.password)) res.send({err: 'Invalid Email / Password'})
-       else {
-         let userDt = {
-           _id : user._id,
-           // email: user.email,
-           name: user.name,
-           profile_picture: user.profile_picture || '',
-           komsel: user.komsel
-          }
-         token = helper.createToken(userDt)
-         res.send({token: token})
-       }
-     }
-   )
- }
+//   //      }
+//   //      // else if (!helper.checkPassword(password,user.password)) res.send({err: 'Invalid Email / Password'})
+//   //      else {
+//   //        let userDt = {
+//   //          _id : user._id,
+//   //          // email: user.email,
+//   //          name: user.name,
+//   //          profile_picture: user.profile_picture || '',
+//   //          komsel: user.komsel
+//   //         }
+//   //        token = helper.createToken(userDt)
+//   //        res.send({token: token})
+//   //      }
+//   //    }
+//    )
+//  }
 }
 
 const register = (req,res) => {
