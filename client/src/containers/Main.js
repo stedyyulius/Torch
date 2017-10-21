@@ -52,6 +52,7 @@ class Main extends Component {
         <AddGame />
         <div id='cssmenu'>
             <ul>
+              <li><a><span>TORCH</span></a></li>
               {(this.state.wazeIcons === true)
               ? <li><a onClick={()=> this.wazeIcons()}><span>Clear Komsel</span></a></li>
               : <li><a onClick={()=> this.wazeIcons()}><span>Show Komsel</span></a></li>
