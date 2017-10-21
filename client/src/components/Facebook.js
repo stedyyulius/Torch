@@ -19,11 +19,7 @@ class Facebook extends Component{
   
   responseFacebook(response) {
      console.log(response);
-     axios.post(`${api}/login`,response)
-     .then(res=>{
-       console.log(res);
-       cookie.save('user',response)
-     })
+     cookie.save('user',response)
    }
    
   render(){

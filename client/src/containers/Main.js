@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import cookie from 'react-cookies'
 import brand from '../logotorch.png'
+import { connect } from 'react-redux'
 
 import TorchMap from '../components/TorchMap'
 import Dashboard from '../components/Dashboard'
 import AddGame from '../components/AddGame'
 
 import '../App.css';
+
+import { isActivity } from '../actions/index'
 
 class Main extends Component {
   constructor(props){
@@ -46,10 +49,12 @@ class Main extends Component {
       this.setState({
         terminalIcons: true
       })
+      this.props.isActivity(true)
     } else{
       this.setState({
         terminalIcons: false
       })
+      this.props.isActivity(false)
     }
   }
   
@@ -96,4 +101,16 @@ class Main extends Component {
   }
 }
 
-export default Main;
+const mapStateToProps = (state) =>{
+  return{
+    
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return{
+    isActivity: (status) => dispatch(isActivity(status))
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Main);
