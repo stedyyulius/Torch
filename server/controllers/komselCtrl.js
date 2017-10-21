@@ -36,7 +36,9 @@ const addKomsel = (req, res) => {
       },
       _creator: user._id,
       _leader: user._id,
-      _church: req.body.church || ''
+      _church: req.body.church || '',
+      theme: req.body.theme || '',
+      ayat: req.body.ayat || ''
     }
     let n_komsel = new Komsel(komsel)
 
@@ -71,6 +73,7 @@ const editKomsel = (req, res) => {
       let location = komsel.location || {}
       if (typeof req.body.name !== 'undefined') komsel.name = req.body.name
       if (typeof req.body.theme !== 'undefined') komsel.theme = req.body.theme
+      if (typeof req.body.ayat !== 'undefined') komsel.ayat = req.body.ayat
       if (typeof req.body.lng !== 'undefined') location.lng = req.body.lng
       if (typeof req.body.lat !== 'undefined') location.lat = req.body.lat
       if (typeof req.body.city !== 'undefined') location.city = req.body.city

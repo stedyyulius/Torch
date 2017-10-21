@@ -7,6 +7,7 @@ let komselSchema = new Schema ({
   approvedBy: {type: Schema.Types.ObjectId, ref: 'Staff'},
   createdDate: {type: Date, default: Date.now},
   theme: String,
+  ayat: String,
   location: {
     lng: String,
     lat: String,
