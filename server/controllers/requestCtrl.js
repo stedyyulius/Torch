@@ -34,7 +34,7 @@ const addJoinKomsel = (req, res) => {
     else {
       let join = {}
 
-      join._requestor = _user
+      join._requestor = user._id
 
       if (typeof req.params.idKomsel !== 'undefined') join._komsel = req.params.idKomsel
 

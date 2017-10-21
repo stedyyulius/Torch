@@ -9,7 +9,9 @@ let RequestExitKomsel = require('../models/requestExitKomsel')
 let login = require('../helpers/login')
 
 const getKomsels = (req, res) => {
-  Komsel.find((err, komsels) => {
+  Komsel.find()
+  .populate('member._member')
+  .exec((err, komsels) => {
     res.send(err? {err:err}: komsels)
   })
 }
@@ -17,7 +19,9 @@ const getKomsels = (req, res) => {
 const getKomsel = (req, res) => {
   let id = req.params.id
 
-  Komsel.findById(id, (err, komsel) => {
+  Komsel.findById(id)
+  .populate('member._member')
+  .exec((err, komsel) => {
     // if (typeof komsel.badge !== 'undefined') {
     //   Badge.findById(komsel.badge.descr, (err, badge)=>{
     //     komsel.badge = {
@@ -92,6 +96,8 @@ const editKomsel = (req, res) => {
       if (typeof req.body.lng !== 'undefined') location.lng = req.body.lng
       if (typeof req.body.lat !== 'undefined') location.lat = req.body.lat
       if (typeof req.body.city !== 'undefined') location.city = req.body.city
+      if (typeof req.body.image !== 'undefined') komsel.image = req.body.image
+      if (typeof req.body.map_image !== 'undefined') komsel.map_image = req.body.map_image
       if (typeof req.body.church !== 'undefined') komsel.church = req.body._church
       if (typeof req.body.badge !== 'undefined') komsel.badge = {
         descr: req.body.bage
@@ -115,7 +121,7 @@ const approveKomsel = (req, res) => {
         if (err) res.send({err:'Invalid Komsel'})
         else if (komsel != null){
           komsel.isApproved = true
-          komsel.approvedBy = decoded._id
+          // komsel.approvedBy = decoded._id
           komsel.save((err, approved_komsel) => {
             res.send(err? {err: err} : approved_komsel)
           })
@@ -195,7 +201,25 @@ const addMember = (req, res) => {
   })
 }
 
-const addAchievement = (req, res) => {}
+const addAchievement = (req, res) => {
+  let id = req.params.id
+  Komsel.findById(id, (err, komsel) => {
+    if (err) res.send({err:err})
+    else if(komsel !== null){
+      if (typeof komsel.achievement === 'undefined')
+        komsel.achievement = []
+      komsel.achievement.push({
+        descr: req.body.descr || '',
+        title: req.body.title || ''
+      })
+      komsel.save((err, komsel) => {
+        res.send(err?{err:err} : komsel)
+      })
+    }
+    else res.send({err:'Komsel not found'})
+  })
+
+}
 
 const deleteMember = (req, res) => {
   let id = req.params.idRequest
