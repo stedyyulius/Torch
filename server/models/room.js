@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 let roomSchema = new Schema ({
+  name: String,
   _game: {type: Schema.Types.ObjectId, ref: 'Game'},
+  isOnline: Boolean,
   _winner: {type: Schema.Types.ObjectId, ref: 'Komsel'},
   creator: {
     _komsel: {type: Schema.Types.ObjectId, ref: 'Komsel'},
@@ -23,6 +25,7 @@ let roomSchema = new Schema ({
     },
     maxRegis: Date
   },
+  image:String,
   players: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 })
 

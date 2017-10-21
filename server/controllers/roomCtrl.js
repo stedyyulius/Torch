@@ -1,11 +1,11 @@
 let Room = require('../models/room')
 let User = require('../models/user')
+let Game = require('../models/game')
+let Komsel = require('../models/komsel')
 
 const getRooms = (req, res) => {
   let id = req.params.id
-  Room.find((err, rooms) => {
-    res.send(err? {err:err}: rooms)
-  })
+  Room.find((err, rooms) => {res.send(err? {err:err} : rooms)})
 }
 
 const getRoom = (req, res) => {
@@ -40,12 +40,16 @@ const addRoom = (req, res) => {
 
       let room = {
         _game: req.body.game || '',
+        isOnline: req.body.isOnline,
+        name: req.body.name || 'no name room',
+        image: req.body.image ||'',
         creator: {
           _komsel: req.body.komsel || '',
           _user: id,
-        },
-        rules: rules
+        }
       }
+      if (!(Object.keys(rules).length === 0 && rules.constructor === Object)) room.rules = rules
+
       let n_room = new Room(room)
 
       n_room.save((err, n_room) => {
@@ -68,8 +72,105 @@ const deleteRoom = (req, res) => {
   })
 }
 
-const editRoom = (req, res) => {
+const editRoom = (req, res) => {}
 
+const searchRoom = (req, res) => {
+  let type = req.params.type
+  let isOnline = type === 'online'
+
+  Room.find({isOnline:isOnline})
+  .populate('_game creator._komsel')
+  .populate({
+    path: 'creator._user',
+    select: 'name _id'
+  })
+  .exec((err,rooms) => {
+    res.send(err? {err:err} : rooms)
+  })
+
+}
+
+// const getOpenRoom = (req, res) => {}
+
+const editStatusPlayer = (req, res) => {
+  // User.findOne({email:req.body.email}, (err, user)=>{
+    // if (err) res.send({err:err})
+    // else {
+      let winner = req.body.winner //komsel
+      Room.findById(req.params.id, (err, room)=> {
+        if (err) res.send({err:err})
+        else {
+          room._winner = winner
+          room.save((err,room) => {
+            if (err) {
+              res.send({err:err})
+            } else {
+              Game.findById(room._game, (err,game) => {
+                if (err) res.send({err:'Game not found'})
+                else {
+                  let poin = game.poin
+                  Komsel.findById(room._winner, (err, komsel) => {
+                    if (err) res.send({err:'Komsel not found'})
+                    else {
+                      if (typeof komsel.poin === 'undefined') komsel.poin = 0
+                      komsel.poin = komsel.poin + poin
+                      if (typeof komsel.poinHistory === 'undefined') komsel.poinHistory = []
+
+                      komsel.poinHistory.push({
+                        poin: komsel.poin,
+                        descr: 'Winning game',
+                        tag: 'add'
+                      })
+
+                      komsel.save((err,komsel) => {
+                        if (err) res.send({err:err})
+                        else res.send()
+                      })
+                    }
+                  })
+                }
+
+              })
+            }
+          })
+        }
+      })
+    // }
+  // })
+
+}
+
+const addPlayer = (req, res) => {
+  //add player ke room
+  //add poin ke player
+  let email = req.body.email
+  let roomId = req.params.id
+
+  User.findOne({email: email}, (err,user)=> {
+    if (err) res.send({err:'Invalid user'})
+    else {
+      let id = user._id
+      Room.findById(roomId, (err, room) => {
+        if (err) res.send({err:'Room not found'})
+        else {
+          if (typeof room.players === 'undefined') room.players = []
+
+          room.players.push(id)
+          room.save((err,room) => {
+            if (err) res.send({err:err})
+            else {
+              user.poin = user.poin + 10
+              user.save((err, user)=> {
+                res.send(err? {err:err} : room)
+              })
+            }
+          })
+        }
+      })
+
+    }
+
+  })
 }
 
 module.exports = {
@@ -78,4 +179,9 @@ module.exports = {
   addRoom,
   deleteRoom,
   editRoom,
+  searchRoom,
+  // getOpenRoom,
+  editStatusPlayer,
+  addPlayer
+
 }

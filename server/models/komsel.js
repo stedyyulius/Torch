@@ -33,7 +33,7 @@ let komselSchema = new Schema ({
       }
     }
   }],
-  playHistory: [{type: Schema.Types.ObjectId, ref: 'Room'}],
+  // playHistory: [{type: Schema.Types.ObjectId, ref: 'Room'}],
   achievement: [{
     descr: {type: Schema.Types.ObjectId, ref: 'Achievement'},
     unlockDate: {type: Date, default: Date.now}
