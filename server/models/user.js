@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 
 let helper = require('../helpers/login')
 let userSchema = new Schema ({
+  profile_picture: String,
   email: {
     type: String,
     required: [true, '{PATH} must be filled'],
@@ -27,8 +28,7 @@ let userSchema = new Schema ({
     validate: {
       validator: function(val){ return /^\+[0-9]{10,32}/gi.test(val) },
       message: `{PATH} must be between 10 and 32 char length and starts with +`
-    },
-    required: [true, '{PATH} must be filled']
+    }
   },
   poin: { type: Number, default: 0 },
   komsel : [{
