@@ -57,28 +57,31 @@ class TorchMap extends Component {
             position={[+Current[0],+Current[1]]}
             icon={Me}>
          </Marker>
-         {(this.state.komsel.map((k,i)=>
-           <Marker 
-             position={[+k.location.lat,+k.location.lng]}
-             icon={icon({
-                 iconUrl: k.image,
-                 iconSize: [70, 70],
-                 iconAnchor: [22, 94],
-                 popupAnchor: [-3, -76],
-                 shadowSize: [68, 95],
-                 shadowAnchor: [22, 94]
-             })}>
-             <Popup>
-               <span>
-                 <p>{k.poin}</p>
-                 <b>{k.name}</b>
-                 <br />
-                 <p>{k.theme}</p>
-                 <p>{k.ayat}</p>
-               </span>
-             </Popup>
-          </Marker>  
-         ))}
+         {(this.props.isKomsel)
+           ?  (this.state.komsel.map((k,i)=>
+              <Marker 
+                position={[+k.location.lat,+k.location.lng]}
+                icon={icon({
+                    iconUrl: k.image,
+                    iconSize: [70, 70],
+                    iconAnchor: [22, 94],
+                    popupAnchor: [-3, -76],
+                    shadowSize: [68, 95],
+                    shadowAnchor: [22, 94]
+                })}>
+                <Popup>
+                  <span>
+                    <p>{k.poin}</p>
+                    <b>{k.name}</b>
+                    <br />
+                    <p>{k.theme}</p>
+                    <p>{k.ayat}</p>
+                  </span>
+                </Popup>
+             </Marker>  
+            ))
+           : null
+         }        
         {(this.props.rooms && this.props.isActive === true)
          ?this.props.rooms.map((m,index) => (
            <Marker
@@ -122,7 +125,8 @@ class TorchMap extends Component {
 const mapStateToProps = (state) =>{
   return{
     rooms: state.rooms,
-    isActive: state.isActive
+    isActive: state.isActive,
+    isKomsel: state.isKomsel
   }
 }
 

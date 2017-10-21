@@ -10,7 +10,7 @@ let login = require('../helpers/login')
 
 const getKomsels = (req, res) => {
   Komsel.find()
-  .populate('member._member')
+  .populate('member._member _leader')
   .exec((err, komsels) => {
     res.send(err? {err:err}: komsels)
   })
@@ -20,7 +20,7 @@ const getKomsel = (req, res) => {
   let id = req.params.id
 
   Komsel.findById(id)
-  .populate('member._member')
+  .populate('member._member _leader')
   .exec((err, komsel) => {
     // if (typeof komsel.badge !== 'undefined') {
     //   Badge.findById(komsel.badge.descr, (err, badge)=>{
@@ -92,6 +92,7 @@ const editKomsel = (req, res) => {
       let location = komsel.location || {}
       if (typeof req.body.name !== 'undefined') komsel.name = req.body.name
       if (typeof req.body.theme !== 'undefined') komsel.theme = req.body.theme
+      if (typeof req.body.poin !== 'undefined') komsel.poin = req.body.poin
       if (typeof req.body.ayat !== 'undefined') komsel.ayat = req.body.ayat
       if (typeof req.body.lng !== 'undefined') location.lng = req.body.lng
       if (typeof req.body.lat !== 'undefined') location.lat = req.body.lat
@@ -211,10 +212,12 @@ const addAchievement = (req, res) => {
 
       komsel.achievement.push({
         descr: req.body.descr || '',
-        title: req.body.title || ''
+        title: req.body.title || '',
+        poin: req.body.poin || 0
       })
 
       // komsel.achievement = []
+
       komsel.save((err, komsel) => {
         res.send(err?{err:err} : komsel)
       })

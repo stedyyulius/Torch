@@ -49,10 +49,18 @@ const isActivity = (status) =>{
   }
 }
 
+const isKomsel = (status) =>{
+  return{
+    type: 'isKomsel',
+    payload: status
+  }
+}
+
 export{
   isCheck,
   getRooms,
   gameList,
   getOneData,
-  isActivity  
+  isActivity,
+  isKomsel  
 }
