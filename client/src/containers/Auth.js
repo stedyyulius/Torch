@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Facebook from '../components/Facebook'
 import { connect } from 'react-redux'
+import cookie from 'react-cookies'
 
 import '../styles/Auth.css'
 
@@ -20,9 +21,9 @@ class Auth extends Component{
   
   render(){
     return(
-      <div class="body">
-        <div class="login-form">
-        <div class="form-group logo">
+      <div className="body">
+        <div className="login-form">
+        <div className="form-group logo">
           <img className="icon col-md-12" src="https://i.imgur.com/L0VzO50.png" />
           {(!this.props.isCheck)
             ? <img className="sub-icon col-md-12" src="https://i.imgur.com/7N4Mnyl.png"/>

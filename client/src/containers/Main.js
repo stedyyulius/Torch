@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cookie from 'react-cookies'
 
 import TorchMap from '../components/TorchMap'
 import Dashboard from '../components/Dashboard'
@@ -16,6 +17,7 @@ class Main extends Component {
   }
   
   logout(){
+    cookie.remove('user')
     window.location = '/login'
   }
   

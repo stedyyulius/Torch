@@ -3,6 +3,9 @@ import axios from 'axios'
 import Countries from 'countries-cities'
 import GoogleMapReact from 'google-map-react'
 import geocoder from 'geocoder'
+import cookie from 'react-cookies'
+
+import { api } from '../config'
 
 class AddGame extends React.Component {
   constructor (props) {
@@ -44,7 +47,22 @@ class AddGame extends React.Component {
     }
   })
   }
-
+  
+  createActivity(){
+    let game = {
+      isOneline : this.state.isOnline,
+      name: this.state.name,
+      descr: this.state.descr,
+      poin: this.state.prize,
+      image: this.state.image,
+      creator: cookie.load('user').name
+    }
+    axios.post(`${api}/game`,game)
+    .then(res=>{
+      console.log(res);
+    })
+  }
+  
   render () {
     return (
       
@@ -59,16 +77,23 @@ class AddGame extends React.Component {
       <form>
 <div className="form-group">
   <label htmlFor="exampleInputEmail1">Activity Name</label>
-  <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Activity Name" />
+  <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Activity Name" 
+  onChange={(e)=> this.setState({name: e.target.value})} />
+</div>
+<div className="form-group">
+  <label htmlFor="exampleInputEmail1">Description</label>
+  <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Description" 
+  onChange={(e)=> this.setState({description: e.target.value})} />
 </div>
 <div className="form-group">
   <label htmlFor="exampleInputPassword1">Prize</label>
-  <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Prize" />
+  <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Prize" 
+  onChange={(e)=> this.setState({prize: e.target.value})} />
 </div>
 <div className="form-group">
-  <label htmlFor="exampleInputFile">File input</label>
-  <input type="file" id="exampleInputFile" />
-  <p className="help-block">Example block-level help text here.</p>
+  <label htmlFor="exampleInputPassword1">Image</label>
+  <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Image" 
+  onChange={(e)=> this.setState({image: e.target.value})} />
 </div>
 <div className="form-group">
   <GoogleMapReact

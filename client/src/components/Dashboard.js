@@ -4,14 +4,14 @@ import React, { Component } from 'react';
 class Dashboard extends Component {
   render(){
     return(
-      <div class="list-group">
-        <p href="#" class="list-group-item active">
+      <div className="list-group">
+        <p href="#" className="list-group-item active">
           ROOM GAME
         </p>
-        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-        <a href="#" class="list-group-item">Morbi leo risus</a>
-        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-        <a href="#" class="list-group-item">Vestibulum at eros</a>
+        <a href="#" className="list-group-item">Dapibus ac facilisis in</a>
+        <a href="#" className="list-group-item">Morbi leo risus</a>
+        <a href="#" className="list-group-item">Porta ac consectetur ac</a>
+        <a href="#" className="list-group-item">Vestibulum at eros</a>
       </div>
     )
   }
