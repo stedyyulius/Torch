@@ -3,6 +3,7 @@ let User = require('../models/user')
 let RequestJoinKomsel = require('../models/requestJoinKomsel')
 let RequestExitKomsel = require('../models/requestExitKomsel')
 let login = require('../helpers/login')
+let komselCtrl = require('../controllers/komselCtrl')
 
 var nodemailer = require("nodemailer");
 var smtpTransport = require('nodemailer-smtp-transport');
@@ -66,16 +67,17 @@ const addJoinKomsel = (req, res) => {
 
           transport.sendMail(job, (error, info) => {
             if (error) {
-              console.log(error);
-              res.send(error);
+              console.log(error)
+              res.send(error)
             }
-            else{
-              console.log(`sukses`);
-              res.send('success!')
+            else {
+              console.log(`sukses`)
+              req.params.idRequest = n_join._id
+              console.log(req.params)
+              komselCtrl.addMember(req,res)
+              // res.send('success!')
             }
-          });
-          // request.sendEmail('')
-          // res.send(err ? {err:err} : n_join)
+          })
 
         }
       })

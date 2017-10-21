@@ -180,7 +180,6 @@ const addMember = (req, res) => {
 
 
           komsel.member.push(newMember)
-          // console.log(komsel.member)
 
           komsel.save((err, n_komsel) => {
             if (err) res.send({err:err})
