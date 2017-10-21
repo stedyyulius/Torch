@@ -9,7 +9,7 @@ import AddGame from '../components/AddGame'
 
 import '../App.css';
 
-import { isActivity } from '../actions/index'
+import { isActivity, isKomsel } from '../actions/index'
 
 class Main extends Component {
   constructor(props){
@@ -37,10 +37,12 @@ class Main extends Component {
       this.setState({
         wazeIcons: true
       })
+      this.props.isKomsel(true)
     } else{
       this.setState({
         wazeIcons: false
       })
+      this.props.isKomsel(false)
     }
   }
   
@@ -110,7 +112,8 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
   return{
-    isActivity: (status) => dispatch(isActivity(status))
+    isActivity: (status) => dispatch(isActivity(status)),
+    isKomsel: (status) => dispatch(isKomsel(status))
   }
 }
 
