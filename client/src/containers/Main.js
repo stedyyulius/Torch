@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 
 import TorchMap from '../components/TorchMap'
 import Dashboard from '../components/Dashboard'
-import AddGame from '../components/AddGame'
 
 import '../App.css';
 
@@ -63,7 +62,6 @@ class Main extends Component {
   render() {
     return (
       <div className="App">
-        <AddGame />
         <div>
           <nav className="navbar navbar-inverse">
             <div className="container-fluid">

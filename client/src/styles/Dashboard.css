@@ -6,6 +6,10 @@
   padding-right: 30px;
 }
 
+.tooltip{
+  color: black;
+}
+
 .online{
   text-align: center;
   border-style: solid;
@@ -26,4 +30,9 @@
 
 .game-descr{
   font-size: 12px;
+}
+
+.komsel-pic{
+  width: 150px;
+  height: 150px;
 }
