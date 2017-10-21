@@ -17,7 +17,7 @@ class Main extends Component {
     }
   }
   
-  componentDidMount(){
+  componentWillMount(){
     if(!cookie.load('user')){
       window.location = '/login'
     }
