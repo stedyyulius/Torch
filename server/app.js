@@ -7,12 +7,16 @@ const cors = require('cors')
 
 const port = process.env.PORT || 3000
 let index = require('./routes/index')
+let komsel = require('./routes/komsel')
 // let user = require('./routes/user')
+// let achivement = require('./routes/achivement')
 let staff = require('./routes/staff')
 let game = require('./routes/game')
+let badge = require('./routes/badge')
 // let room = require('./routes/room')
 let deck = require('./routes/deck')
-// let request = require('./routes/request')
+let request = require('./routes/request')
+// let requestExit = require('./routes/requestExit')
 let reward = require('./routes/reward')
 
 app.use(bodyParser.json())
@@ -22,11 +26,14 @@ app.use(cors())
 
 app.use('/', index)
 // app.use('/user', user)
+// app.use('/achievement', achievement)
 app.use('/staff', staff)
 app.use('/game', game)
+app.use('/badge', badge)
+app.use('/komsel', komsel)
 // app.use('/room', room)
 app.use('/deck', deck)
-// app.use('/request', request)
+app.use('/request', request)
 app.use('/reward', reward)
 
 let envi = app.settings.env || 'development'
