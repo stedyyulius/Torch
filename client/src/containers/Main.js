@@ -83,7 +83,17 @@ class Main extends Component {
                   <li className="dropdown">
                     <a className="dropdown-toggle" data-toggle="dropdown" href="#">Achievement<span className="caret"></span></a>
                     <ul className="dropdown-menu">
-                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Achievement<span className="w3-margin-left w3-badge w3-red"> 6</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> New Member<span className="w3-margin-left w3-badge w3-red"> 1</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Score Game Player (Monthly)<span className="w3-margin-left w3-badge w3-red"> 2</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> 1st Activity at Cellgroup<span className="w3-margin-left w3-badge w3-red"> 3</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Member in Cellgroup (Monthly)<span className="w3-margin-left w3-badge w3-red"> 3</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Join Event<span className="w3-margin-left w3-badge w3-red"> 3</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Activity with Other Cellgroup<span className="w3-margin-left w3-badge w3-red"> 4</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Member in Cellgroup (Annual)<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Score Game Player (Annual)<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Multiply Cellgroup<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Stability Cellgroup<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> New Member Each Month<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
                     </ul>
                   </li>
                 </ul>
