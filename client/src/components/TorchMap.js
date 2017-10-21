@@ -131,23 +131,6 @@ class TorchMap extends Component {
         ))
         :<div></div>
       }
-        {/* {(this.state.waze.length > 0 && this.state.wazeIcons === true)
-         ?this.state.waze.map((w,index) => (
-           <Marker
-             key={index} 
-             position={[w.location.y,w.location.x]}
-             >
-            <Popup>
-              <span>
-                <b>{w.street}</b>
-                <br />
-                {w.subtype}
-              </span>
-            </Popup>
-          </Marker>          
-        ))
-        :<div></div>
-      } */}
     </Map>
   </div>
     )

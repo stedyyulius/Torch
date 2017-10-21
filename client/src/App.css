@@ -58,7 +58,8 @@
 
 .col-md-9{
   padding-right: 0;
-  margin: auto;
+  padding: 0;
+  margin: 0;
 }
 
 .col-md-3{
@@ -68,7 +69,7 @@
 }
 
 .leaflet-container{
-  height: 700px;
+  height: 790px;
   width: 100%;
 }
 
