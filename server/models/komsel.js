@@ -1,11 +1,12 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+
 let komselSchema = new Schema ({
   name: {type: String, required: [true, `{PATH} must be filled`]},
   isApproved: {type: Boolean, default: false},
-  approvedBy: {type: Schema.Types.ObjectId, ref: 'Admin'},
-  createdDate: {type: Date, default: new Date()},
-  tema: String,
+  approvedBy: {type: Schema.Types.ObjectId, ref: 'Staff'},
+  createdDate: {type: Date, default: Date.now},
+  theme: String,
   location: {
     lng: String,
     lat: String,
@@ -16,8 +17,11 @@ let komselSchema = new Schema ({
     totalVote: {type: Number, default: 0},
     totalScore: {type: Number, default: 0},
   },
-  badge: [{descr:{type: Schema.Types.ObjectId, ref: 'Badge'}, unlockDate: {type: Date, default: New Date()}}],
-  poin: Number,
+  badge: [{
+    descr:{type: Schema.Types.ObjectId, ref: 'Badge'},
+    unlockDate: {type: Date, default: Date.now}
+  }],
+  poin: {type: Number, default: 0},
   poinHistory: [{
     poin: Number,
     descr: String,
@@ -29,12 +33,18 @@ let komselSchema = new Schema ({
       }
     }
   }],
-  playHistory: [{type: Schema.Types.RoomId, ref: 'Room'}],
+  playHistory: [{type: Schema.Types.ObjectId, ref: 'Room'}],
   achievement: [{
     descr: {type: Schema.Types.ObjectId, ref: 'Achievement'},
-    unlockDate: {type: Date, default: New Date()}
+    unlockDate: {type: Date, default: Date.now}
   }],
-  member: [{type: Schema.Types.ObjectId, ref: 'Member'}, role: String, joinDate: {type: Date, default: New Date()}],
+  member: [
+    {
+      _member: {type: Schema.Types.ObjectId, ref: 'Member'},
+      role: String,
+      joinDate: {type: Date, default: Date.now}
+    }
+  ],
   _creator: {type: Schema.Types.ObjectId, ref: 'User'},
   _leader: {type: Schema.Types.ObjectId, ref: 'User'},
   _church: {type: Schema.Types.ObjectId, ref: 'Church'}
