@@ -38,7 +38,7 @@ let komselSchema = new Schema ({
   }],
   // playHistory: [{type: Schema.Types.ObjectId, ref: 'Room'}],
   achievement: [{
-    image: {type:String, default: 'https://imgur.com/j7QZ4c0'},
+    image: {type:String, default: 'https://i.imgur.com/j7QZ4c0.png'},
     descr: String,
     title: String,
     createdDate: {type:Date, default: Date.now},

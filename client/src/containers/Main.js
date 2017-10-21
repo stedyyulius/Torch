@@ -66,7 +66,7 @@ class Main extends Component {
           <nav className="navbar navbar-inverse">
             <div className="container-fluid">
               <div className="navbar-header">
-                <a class="navbar-brand" href="#"><img src="https://i.imgur.com/HUIETSB.png" alt="TORCH" /></a>
+                <a className="navbar-brand" href="#"><img src="https://i.imgur.com/HUIETSB.png" alt="TORCH" /></a>
               </div>
               <div className="navbar-collapse collapse">
                 <ul className="nav navbar-nav">
@@ -78,6 +78,22 @@ class Main extends Component {
                   ? <li><a onClick={()=> this.terminalIcons()}><span>Clear Activity</span></a></li>
                   : <li><a onClick={()=> this.terminalIcons()}><span>Show Activity</span></a></li>
                   }
+                  <li className="dropdown">
+                    <a className="dropdown-toggle" data-toggle="dropdown" href="#">Achievement<span className="caret"></span></a>
+                    <ul className="dropdown-menu">
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> New Member<span className="w3-margin-left w3-badge w3-red"> 1</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Score Game Player (Monthly)<span className="w3-margin-left w3-badge w3-red"> 2</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> 1st Activity at Cellgroup<span className="w3-margin-left w3-badge w3-red"> 3</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Member in Cellgroup (Monthly)<span className="w3-margin-left w3-badge w3-red"> 3</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Join Event<span className="w3-margin-left w3-badge w3-red"> 3</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Activity with Other Cellgroup<span className="w3-margin-left w3-badge w3-red"> 4</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Member in Cellgroup (Annual)<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Highest Score Game Player (Annual)<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Multiply Cellgroup<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Stability Cellgroup<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> New Member Each Month<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
+                    </ul>
+                  </li>
                 </ul>
                 <ul className="nav navbar-nav pull-right">
                   <li><img src={cookie.load('user').picture.data.url} className="img-circle" alt="Cinque Terre" /></li>
