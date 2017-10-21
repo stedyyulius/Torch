@@ -2,6 +2,10 @@
   color: white;
 }
 
+.game-modal{
+  width: 100%;
+}
+
 .img-circle{
   padding: 0;
   margin-top: 8px;

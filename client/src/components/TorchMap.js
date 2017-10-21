@@ -33,11 +33,12 @@ class TorchMap extends Component {
     super(props)
     this.state={
       rooms:[],
-      komsel: []
+      komsel: [],
+      isJoin: ''
     }
   }
   
-  componentDidMount(){
+  componentWillMount(){
     this.props.getRooms()
     axios.get(`${api}/komsel`)
     .then(res=>{
@@ -48,7 +49,7 @@ class TorchMap extends Component {
     })
   }
   
-  requestJoin(id){
+  requestJoin(id,i){
     console.log(id);
     let data = {
       name: cookie.load('user').name
@@ -61,7 +62,8 @@ class TorchMap extends Component {
       .then(res=>{
         console.log(res);
         this.setState({
-          komsel: res.data
+          komsel: res.data,
+          isJoin: i
         })
       })
     })
@@ -80,7 +82,7 @@ class TorchMap extends Component {
             icon={Me}>
          </Marker>
          <div className="tooltip-detail">
-         {(this.props.isKomsel)
+         {(this.props.isKomsel && this.state.komsel.length > 0)
            ?  (this.state.komsel.map((k,i)=>
               <Marker
                 key={i} 
@@ -102,11 +104,17 @@ class TorchMap extends Component {
                     <span className="tooltip-detail">{k.ayat}</span>
                     <hr />
                     <span className="leader">{k._leader.name}</span>
-                    {(k.member.map((m,index)=>
-                      <div key={index}><b>{m._member.name}</b><br /></div>
-                    ))}
+                      {(k.member.length === 0)
+                        ? (<b>No Member Yet</b>)
+                        : (k.member.map((m,index)=>
+                          <div key={index}><b>{m._member.name}</b><br /></div>
+                        ))
+                      }      
                     <hr />
-                    <button className="btn btn-success tooltip-detail" onClick={()=> this.requestJoin(k._id)}>Join</button>
+                    {(this.state.isJoin === i)
+                      ? null
+                      : <button className="btn btn-success tooltip-detail" onClick={()=> this.requestJoin(k._id,i)}>Join</button>
+                    }
                   </span>
                 </Popup>
              </Marker>  
