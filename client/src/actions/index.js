@@ -11,7 +11,7 @@ const isCheck = (status) =>{
 
 const getRooms = () =>{
   return(dispatch)=>{
-    axios.get(`${api}/room`)
+    axios.get(`${api}/room/search/offline`)
     .then(res=>{
       console.log(res);
       dispatch({
@@ -22,7 +22,28 @@ const getRooms = () =>{
   }
 }
 
+const gameList = () =>{
+  return(dispatch)=>{
+    axios.get(`${api}/room/search/online`)
+    .then(res=>{
+      console.log(res.data);
+      dispatch({
+        type: 'Games',
+        payload: res.data
+      })
+    })
+  }
+}
+
+const getOneData = (data) =>{
+  return{
+    type: 'OneData',
+    payload: data
+  }
+}
 export{
   isCheck,
-  getRooms  
+  getRooms,
+  gameList,
+  getOneData  
 }

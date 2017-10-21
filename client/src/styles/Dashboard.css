@@ -14,3 +14,16 @@
   display: block;
   margin: auto;
 }
+
+.game-icon{
+  width: 120%;
+}
+
+.game-name{
+  color: red;
+  font-weight: bold;
+}
+
+.game-descr{
+  font-size: 12px;
+}
