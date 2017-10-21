@@ -37,30 +37,36 @@ const addRoom = (req, res) => {
 
         rules.offline = offline
       }
+      // Komsel.findById(req.body.creator_komsel,(err,komsel)=>{
+        // if (err) res.send({err:err})
+        // else {
+          let room = {
+            _game: req.body.game || '',
+            isOnline: req.body.isOnline,
+            name: req.body.name || 'no name room',
+            image: req.body.image ||'',
+            tipe: req.body.tipe || 'competition', //event ato competition
+            creator: req.body.creator || '',
+            // _creatorKomsel: req.body.creator_komsel,
+            // creatorKomselName: komsel.name || '',
+            descr: req.body.descr || ''
+          }
 
-      let room = {
-        _game: req.body.game || '',
-        isOnline: req.body.isOnline,
-        name: req.body.name || 'no name room',
-        image: req.body.image ||'',
-        tipe: req.body.tipe || 'competition', //event ato competition
-        creator: req.body.email || '',
-        _creatorKomsel: req.body.creator_komsel,
-        creatorKomselName: req.body.creator_komsel_name || '',
-        descr: req.body.descr || ''
+          if (!(Object.keys(rules).length === 0 && rules.constructor === Object)) room.rules = rules
 
-      }
-      if (!(Object.keys(rules).length === 0 && rules.constructor === Object)) room.rules = rules
+          let n_room = new Room(room)
 
-      let n_room = new Room(room)
+          n_room.save((err, n_room) => {
+            if (err) {
+              let err_msg = []
+              for (let error in err.errors) err_msg.push(err.errors[error].message)
+              res.send({err : err_msg.join(',')})
+            } else res.send(n_room)
+          })
+        // }
+      // })
 
-      n_room.save((err, n_room) => {
-        if (err) {
-          let err_msg = []
-          for (let error in err.errors) err_msg.push(err.errors[error].message)
-          res.send({err : err_msg.join(',')})
-        } else res.send(n_room)
-      })
+
     // } else res.send({err:'User not found'})
   // })
 }
@@ -81,11 +87,11 @@ const searchRoom = (req, res) => {
   let isOnline = type === 'online'
 
   Room.find({isOnline:isOnline})
-  .populate('_game creator._komsel')
-  .populate({
-    path: 'creator._user',
-    select: 'name _id'
-  })
+  // .populate('_game creator._komsel')
+  // .populate({
+  //   path: 'creator._user',
+  //   select: 'name _id'
+  // })
   .exec((err,rooms) => {
     res.send(err? {err:err} : rooms)
   })

@@ -16,6 +16,12 @@ class Main extends Component {
     }
   }
   
+  componentDidMount(){
+    if(!cookie.load('user')){
+      window.location = '/login'
+    }
+  }
+  
   logout(){
     cookie.remove('user')
     window.location = '/login'
