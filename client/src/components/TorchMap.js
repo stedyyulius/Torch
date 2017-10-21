@@ -2,11 +2,24 @@ import React, {Component} from 'react'
 import { icon } from 'leaflet';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import axios from 'axios'
+import { connect } from 'react-redux'
+
+import { getRooms } from '../actions/index'
+import { api } from '../config'
 
 const Current = [-6.260708, 106.781617];
-var Terminal = icon({
-    iconUrl: 'http://www.qlue.co.id/vacancy/svc/icon-marker.png',
+var Activity = icon({
+    iconUrl: 'https://i.imgur.com/EBgsrAe.png',
     iconSize: [30, 30],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+    shadowSize: [68, 95],
+    shadowAnchor: [22, 94]
+});
+
+var Me = icon({
+    iconUrl: 'https://i.imgur.com/zwHU1wU.png',
+    iconSize: [130, 130],
     iconAnchor: [22, 94],
     popupAnchor: [-3, -76],
     shadowSize: [68, 95],
@@ -17,38 +30,39 @@ class TorchMap extends Component {
   constructor(props){
     super(props)
     this.state={
-      markers:{},
-      waze: {},
+      rooms:[],
     }
   }
-  
 
-  
   render(){
     return(
       <div>      
-        <Map center={Current} zoom={16}>
+        <Map center={Current} zoom={15}>
           <TileLayer
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-        {/* {(this.state.markers.length > 0 && this.state.terminalIcons === true)
-         ?this.state.markers.map((m,index) => (
+          <Marker 
+            position={[+Current[0],+Current[1]]}
+            icon={Me}>
+         </Marker>  
+        {(this.props.rooms)
+         ?this.props.rooms.map((m,index) => (
            <Marker
              key={index} 
-             position={[+m.lat,+m.lng]}
-             icon={Terminal}>
+             position={[+m.rules.offline.location.lat,+m.rules.offline.location.lng]}
+             icon={Activity}>
             <Popup>
               <span>
                 <b>{m.name}</b>
                 <br />
-                {m.address}
+                <img src={m.image} />
               </span>
             </Popup>
           </Marker>          
         ))
         :<div></div>
-      } */}
+      }
         {/* {(this.state.waze.length > 0 && this.state.wazeIcons === true)
          ?this.state.waze.map((w,index) => (
            <Marker
@@ -70,22 +84,22 @@ class TorchMap extends Component {
   </div>
     )
   }
-
   
-  // componentWillMount(){
-  //   axios.get(`http://www.qlue.co.id/vacancy/svc/getDataExample.php`)
-  //   .then(terminals=>{
-  //     this.setState({
-  //       markers: terminals.data
-  //     })
-  //   })
-  //   axios.get(`http://waze.qlue.id/jakarta/update/0atxn84I3hx2WmNm5ifPDZkJaLERZD9A.json`)
-  //   .then(waze=>{
-  //     this.setState({
-  //       waze: waze.data.alerts
-  //     })
-  //   })
-  // }
+  componentDidMount(){
+    this.props.getRooms()
+  }
 }
 
-export default TorchMap
+const mapStateToProps = (state) =>{
+  return{
+    rooms: state.rooms
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return{
+    getRooms: () => dispatch(getRooms())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(TorchMap)
