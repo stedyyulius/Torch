@@ -49,10 +49,12 @@ class TorchMap extends Component {
   }
   
   requestJoin(id){
+    console.log(id);
     let data = {
       name: cookie.load('user').name
     }
-    axios.post(`${api}/request/komsel/join/${id}`)
+    console.log(data);
+    axios.post(`${api}/request/komsel/join/${id}`,data)
     .then(response=>{
       console.log(response);
       axios.get(`${api}/komsel`)

@@ -20,13 +20,13 @@
   margin: auto;
   text-align: center;
   display: block;
-=======
+}
+
 .img-rounded{
   padding: 0;
   margin: 0;
   width: 25px;
   height: 25px;
->>>>>>> fb0ec6a79f8703fb33129f8968ba47cc8c168f27
 }
 
 .navbar-nav{  
@@ -37,17 +37,11 @@
   font-weight: bold;
 }
 
-<<<<<<< HEAD
-=======
-span{
-  color: white;
-}
-
 .dropdown-toggle{
   color: white;
 }
 
->>>>>>> fb0ec6a79f8703fb33129f8968ba47cc8c168f27
+
 .navbar-brand {
   padding: 0px;
 }
