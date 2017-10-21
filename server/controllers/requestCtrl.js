@@ -26,16 +26,17 @@ const getCreateKomsel = (req, res) => {
 //baru request doang
 //habis add react lsg addDt dari requestJoinKomsel
 const addJoinKomsel = (req, res) => {
-  let decoded = login.getUserDetail(req.headers.token)
-  let _user = decoded._id || ''
-
-  User.findById(_user, (err, user)=> {
+  // let decoded = login.getUserDetail(req.headers.token)
+  // let _user = decoded._id || ''
+  let email = req.body.email
+  User.findOne({email: email}, (err, user)=> {
     if (err) res.send({err:'Invalid User'})
     else {
       let join = {}
+
       join._requestor = _user
 
-      if (typeof req.body._komsel !== 'undefined') join._komsel = req.body._komsel
+      if (typeof req.params.idKomsel !== 'undefined') join._komsel = req.params.idKomsel
 
       let requestJoin = new RequestJoinKomsel(join)
       requestJoin.save((err, n_join) => {
@@ -46,16 +47,16 @@ const addJoinKomsel = (req, res) => {
 }
 
 const addExitKomsel = (req, res) => {
-  let decoded = login.getUserDetail(req.headers.token)
-  let _user = decoded._id || ''
-
-  User.findById(_user, (err, user)=> {
+  // let decoded = login.getUserDetail(req.headers.token)
+  // let _user = decoded._id || ''
+  let email = req.body.email
+  User.findOne({email:email}, (err, user)=> {
     if (err) res.send({err:'Invalid User'})
     else {
       let leave = {}
-      leave._requestor = _user
+      leave._requestor = user._id
 
-      if (typeof req.body._komsel !== 'undefined') leave._komsel = req.body._komsel
+      if (typeof req.params.idKomsel !== 'undefined') leave._komsel = req.params.idKomsel
 
       let requestExit = new RequestExitKomsel(leave)
       requestExit.save((err, n_exit) => {

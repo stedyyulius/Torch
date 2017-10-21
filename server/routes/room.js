@@ -12,4 +12,5 @@ router.get('/open', roomCtrl.getOpenRoom) //
 router.put('/:id', roomCtrl.editStatusPlayer) //
 router.post('/:id', roomCtrl.addPlayer) //
 
+
 module.exports = router
