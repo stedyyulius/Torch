@@ -41,7 +41,7 @@ let userSchema = new Schema ({
         message: `{PATH} should be [member | leader]`
       }
     },
-    joinDate: {type: Date, default: new Date()},
+    joinDate: {type: Date, default: Date.now},
   }]
 })
 

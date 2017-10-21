@@ -14,7 +14,7 @@ let church = require('./routes/church')
 let staff = require('./routes/staff')
 let game = require('./routes/game')
 let badge = require('./routes/badge')
-// let room = require('./routes/room')
+let room = require('./routes/room')
 let deck = require('./routes/deck')
 let request = require('./routes/request')
 // let requestExit = require('./routes/requestExit')
@@ -33,7 +33,7 @@ app.use('/game', game)
 app.use('/badge', badge)
 app.use('/komsel', komsel)
 app.use('/church', church)
-// app.use('/room', room)
+app.use('/room', room)
 app.use('/deck', deck)
 app.use('/request', request)
 app.use('/reward', reward)
@@ -41,7 +41,8 @@ app.use('/reward', reward)
 let envi = app.settings.env || 'development'
 
 let db_config = {
-  'development': 'mongodb://localhost/torch',
+  // 'development': 'mongodb://localhost/torch'
+  'development': "mongodb://pdvega:1234@cluster0-shard-00-00-sftdy.mongodb.net:27017,cluster0-shard-00-01-sftdy.mongodb.net:27017,cluster0-shard-00-02-sftdy.mongodb.net:27017/torch?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin"
 }
 
 mongoose.connect(db_config[envi],(err,res) => {

@@ -8,7 +8,7 @@ const requestCtrl = require('../controllers/requestCtrl')
 router.get('/komsel/join', requestCtrl.getJoinKomsel) //v
 router.get('/komsel/leave', requestCtrl.getExitKomsel) //v
 router.get('/komsel/create', requestCtrl.getCreateKomsel) //v
-router.post('/komsel/join/:id', requestCtrl.addJoinKomsel) //v
-router.post('/komsel/leave/:id', requestCtrl.addExitKomsel) //v
+router.post('/komsel/join/:idKomsel', requestCtrl.addJoinKomsel) //v
+router.post('/komsel/leave/:idKomsel', requestCtrl.addExitKomsel) //v
 
 module.exports = router
