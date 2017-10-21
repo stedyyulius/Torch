@@ -18,23 +18,23 @@ const getKomsel = (req, res) => {
   let id = req.params.id
 
   Komsel.findById(id, (err, komsel) => {
-    if (typeof komsel.badge !== 'undefined') {
-      Badge.findById(komsel.badge.descr, (err, badge)=>{
-        komsel.badge = {
-          descr: badge,
-          unlockDate: komsel.badge.unlockDate || ''
-        }
+    // if (typeof komsel.badge !== 'undefined') {
+    //   Badge.findById(komsel.badge.descr, (err, badge)=>{
+    //     komsel.badge = {
+    //       descr: badge,
+    //       unlockDate: komsel.badge.unlockDate || ''
+    //     }
         res.send(err? {err:err}: komsel)
-      })
-    }
+    //   })
+    // }
   })
 }
 
 const addKomsel = (req, res) => {
-  let email = req.body.email
+  let name = req.body.name
   // let decoded = login.getUserDetail(req.headers.token)
   // let user = decoded._id || ''
-  User.findOne({email: email}, (err,user)=>{
+  User.findOne({name: name}, (err,user)=>{
     let komsel = {
       name: req.body.name || '',
       username: req.body.username || '',
@@ -50,10 +50,10 @@ const addKomsel = (req, res) => {
       ayat: req.body.ayat || ''
     }
 
-    if (typeof req.body.badge !== 'undefined')
-    komsel.badge = {
-      descr: req.body.badge
-    }
+    // if (typeof req.body.badge !== 'undefined')
+    // komsel.badge = {
+    //   descr: req.body.badge
+    // }
 
     let n_komsel = new Komsel(komsel)
 

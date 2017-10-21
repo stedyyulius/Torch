@@ -5,11 +5,8 @@ const userCtrl = require('../controllers/userCtrl')
 
 router.get('/', userCtrl.getUsers) //
 router.get('/:id', userCtrl.getUser) //
-router.post('/', userCtrl.addUser) //
-router.delete('/:id', userCtrl.deleteUser) //
 router.put('/:id', userCtrl.editUser) //
-router.put('/poin/:id', komselCtrl.editPoin) //
-router.put('/komsel/:id', komselCtrl.editKomsel) //
+router.delete('/:id', userCtrl.deleteUser) //
 
 
 module.exports = router
