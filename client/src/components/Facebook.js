@@ -1,41 +1,48 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import FacebookLogin from 'react-facebook-login';
+
+import { isCheck } from '../actions/index'
 
 class Facebook extends Component{
   constructor(props){
     super(props)
     this.state={}
   }  
+  
+  next(){
+    this.props.isCheck(true)   
+  }
+  
   responseFacebook(response) {
      console.log(response);
    }
+   
   render(){
     return(
-      <div class="body">
-    <div class="login-form">
-      <div class="form-group logo">
-          {/* <img width="150px" src="../assets/logo.png" /> */}
-      </div>
-       <div class="input form-group">
-         <input type="text" class="form-control" placeholder="Username " id="UserName" />
-         <i class="fa fa-user"></i>
-       </div>
-       <div class="form-group log-status">
-         <input type="password" class="form-control" placeholder="Password" id="Passwod" />
-         <i class="fa fa-lock"></i>
-       </div>
+      <div onClick={()=>this.next()}>
        <FacebookLogin
           appId="244681202728125"
           autoLoad={true}
           fields="name,email,picture"
-          scope="public_profile,user_friends,user_actions.books"
-          callback={this.responseFacebook}
+          scope="public_profile,user_friends,user_actions.books,user_birthday"
+          callback={(e)=>this.responseFacebook(e)}
         />
-       <button type="button" class="log-btn">Log in</button>
-     </div>
-   </div>
+      </div>
     )
   }
 }
 
-export default Facebook
+const mapStateToProps = (state) =>{
+  return{
+    isCheck: state.isCheck
+  }
+}
+
+const mapDispatchToProps = (dispatch)=>{
+  return{
+    isCheck: (status) => dispatch(isCheck(status))
+    }
+  }  
+
+export default connect(null,mapDispatchToProps)(Facebook)
