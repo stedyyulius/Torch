@@ -80,7 +80,17 @@ const deleteRoom = (req, res) => {
   })
 }
 
-const editRoom = (req, res) => {}
+const editRoom = (req, res) => {
+  Room.findById(req.params.id, (err,room) => {
+    if (err) res.send({err:err})
+    else {
+      if (typeof req.body.isOnline !== 'undefined') room.isOnline = req.body.isOnline
+      room.save((err,room) => {
+        res.send(err?{err:err} :room)
+      })
+    }
+  })
+}
 
 const searchRoom = (req, res) => {
   let type = req.params.type

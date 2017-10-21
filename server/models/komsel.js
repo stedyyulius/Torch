@@ -41,7 +41,8 @@ let komselSchema = new Schema ({
     image: {type:String, default: 'https://imgur.com/j7QZ4c0'},
     descr: String,
     title: String,
-    createdDate: {type:Date, default: Date.now}
+    createdDate: {type:Date, default: Date.now},
+    poin: Number
   }],
   member: [
     {

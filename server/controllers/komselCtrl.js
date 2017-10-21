@@ -102,6 +102,7 @@ const editKomsel = (req, res) => {
       if (typeof req.body.badge !== 'undefined') komsel.badge = {
         descr: req.body.bage
       }
+      if (!(Object.keys(location).length === 0 && location.constructor === Object)) komsel.location = location
 
       komsel.save((err, komsel) => {
         res.send(err? {err:err} : komsel)
@@ -206,12 +207,14 @@ const addAchievement = (req, res) => {
   Komsel.findById(id, (err, komsel) => {
     if (err) res.send({err:err})
     else if(komsel !== null){
-      if (typeof komsel.achievement === 'undefined')
-        komsel.achievement = []
+      if (typeof komsel.achievement === 'undefined') komsel.achievement = []
+
       komsel.achievement.push({
         descr: req.body.descr || '',
         title: req.body.title || ''
       })
+
+      // komsel.achievement = []
       komsel.save((err, komsel) => {
         res.send(err?{err:err} : komsel)
       })
