@@ -89,7 +89,6 @@ class Main extends Component {
               </div>
             </div>
           </nav>
-
         </div>
         <div className="row">
           <div className="col-md-9">
