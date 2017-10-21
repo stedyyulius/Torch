@@ -66,7 +66,7 @@ class Main extends Component {
           <nav className="navbar navbar-inverse">
             <div className="container-fluid">
               <div className="navbar-header">
-                <a class="navbar-brand" href="#"><img src="https://i.imgur.com/HUIETSB.png" alt="TORCH" /></a>
+                <a className="navbar-brand" href="#"><img src="https://i.imgur.com/HUIETSB.png" alt="TORCH" /></a>
               </div>
               <div className="navbar-collapse collapse">
                 <ul className="nav navbar-nav">
@@ -78,6 +78,12 @@ class Main extends Component {
                   ? <li><a onClick={()=> this.terminalIcons()}><span>Clear Activity</span></a></li>
                   : <li><a onClick={()=> this.terminalIcons()}><span>Show Activity</span></a></li>
                   }
+                  <li className="dropdown">
+                    <a className="dropdown-toggle" data-toggle="dropdown" href="#">Achievement<span className="caret"></span></a>
+                    <ul className="dropdown-menu">
+                      <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> Achievement<span className="w3-margin-left w3-badge w3-red"> 6</span></a></li>
+                    </ul>
+                  </li>
                 </ul>
                 <ul className="nav navbar-nav pull-right">
                   <li><img src={cookie.load('user').picture.data.url} className="img-circle" alt="Cinque Terre" /></li>
