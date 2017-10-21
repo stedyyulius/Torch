@@ -4,8 +4,10 @@ import Countries from 'countries-cities'
 import GoogleMapReact from 'google-map-react'
 import geocoder from 'geocoder'
 import cookie from 'react-cookies'
+import { connect } from 'react-redux'
 
 import { api } from '../config'
+import { getRooms } from '../actions/index'
 
 class AddGame extends React.Component {
   constructor (props) {
@@ -50,7 +52,7 @@ class AddGame extends React.Component {
   
   createActivity(){
     let game = {
-      isOneline : this.state.isOnline,
+      isOnline : this.state.isOnline,
       name: this.state.name,
       descr: this.state.descr,
       poin: this.state.prize,
@@ -59,8 +61,9 @@ class AddGame extends React.Component {
       lat: this.state.lat,
       lng: this.state.lng
     }
-    axios.post(`${api}/game`,game)
+    axios.post(`${api}/room`,game)
     .then(res=>{
+      
       console.log(res);
     })
   }
@@ -77,6 +80,12 @@ class AddGame extends React.Component {
     </div>
     <div className="modal-body">
       <form>
+        <div className="form-group">
+          <select onChange={(e)=>this.setState({isOnline: e.target.value})}>
+            <option value={false}>offline</option>
+            <option value={true}>online</option>
+          </select>
+        </div>
 <div className="form-group">
   <label htmlFor="exampleInputEmail1">Activity Name</label>
   <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Activity Name" 
@@ -85,12 +94,7 @@ class AddGame extends React.Component {
 <div className="form-group">
   <label htmlFor="exampleInputEmail1">Description</label>
   <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Description" 
-  onChange={(e)=> this.setState({description: e.target.value})} />
-</div>
-<div className="form-group">
-  <label htmlFor="exampleInputPassword1">Prize</label>
-  <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Prize" 
-  onChange={(e)=> this.setState({prize: e.target.value})} />
+  onChange={(e)=> this.setState({descr: e.target.value})} />
 </div>
 <div className="form-group">
   <label htmlFor="exampleInputPassword1">Image</label>
@@ -121,7 +125,7 @@ class AddGame extends React.Component {
     </div>
     <div className="modal-footer">
       <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-      <button type="button" className="btn btn-primary" data-dismiss="modal">Create</button>
+      <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={()=>this.createActivity()}>Create</button>
     </div>
   </div>
 </div>
@@ -130,4 +134,16 @@ class AddGame extends React.Component {
   }
 }
 
-export default AddGame
+const mapStateToProps = (state) =>{
+  return{
+    
+  }
+}
+
+const mapDispatchToProps = (dispatch)=>{
+  return{
+    getRooms: () => dispatch(getRooms())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(AddGame)

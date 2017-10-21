@@ -21,6 +21,7 @@ class Facebook extends Component{
      console.log(response);
      axios.post(`${api}/login`,response)
      .then(res=>{
+       console.log(res);
        cookie.save('user',response)
      })
    }

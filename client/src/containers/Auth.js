@@ -35,20 +35,20 @@ class Auth extends Component{
               <Facebook />
             </div>
           : <div>
-            <div class="input form-group">
+            <div className="input form-group">
                <h6><b>Nama Gereja</b></h6>
-               <input type="text" class="form-control" placeholder="Nama Gereja" id="Nama Gereja" />
-               <i class="fa fa-user"></i>
+               <input type="text" className="form-control" placeholder="Nama Gereja" id="Nama Gereja" />
+               <i className="fa fa-user"></i>
              </div>
-             <div class="input form-group">
+             <div className="input form-group">
                 <h6><b>No Handphone</b></h6>
-                <input type="text" class="form-control" placeholder="No Handphone" id="No Handphone" />
-                <i class="fa fa-user"></i>
+                <input type="text" className="form-control" placeholder="No Handphone" id="No Handphone" />
+                <i className="fa fa-user"></i>
               </div>
-              <div class="input form-group">
+              <div className="input form-group">
                  <h6><b>Interest</b></h6>
-                 <input type="text" class="form-control" placeholder="Interest" id="Interest" />
-                 <i class="fa fa-user"></i>
+                 <input type="text" className="form-control" placeholder="Interest" id="Interest" />
+                 <i className="fa fa-user"></i>
                </div>
                <button type="button" className="log-btn" onClick={()=> this.login()}>Submit</button>
             </div>
