@@ -104,7 +104,7 @@ const editKomsel = (req, res) => {
         descr: req.body.bage
       }
 
-      komsel.member = komsel.member.filter((m)=> `${m._member.name}` !== 'Pella De Vega' )
+      // komsel.member = komsel.member.filter((m)=> `${m._member.name}` !== 'Pella De Vega' )
       if (!(Object.keys(location).length === 0 && location.constructor === Object)) komsel.location = location
       komsel.save((err, komsel) => {
         res.send(err? {err:err} : komsel)
