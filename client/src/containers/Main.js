@@ -94,6 +94,14 @@ class Main extends Component {
                       <li><a><img src="https://i.imgur.com/j7QZ4c0.png" alt="TORCH" className="w3-margin-right img-rounded" alt="Cinque Terre" /> New Member Each Month<span className="w3-margin-left w3-badge w3-red"> 5</span></a></li>
                     </ul>
                   </li>
+                  <li className="dropdown">
+                    <a className="dropdown-toggle" data-toggle="dropdown"><span className="navtext">Rewards</span></a>
+                    <ul className="dropdown-menu">
+                      <li><a><img src="http://www.poundland.co.uk/wordpress/poundland/wp-content/uploads/2015/07/Burger-King-Carousel.jpg" alt="TORCH" className="rewards" alt="Cinque Terre" /></a></li>
+                      <li><a><img src="http://www.anomariano.com/wp-content/uploads/2015/12/Diskon-40-di-McD.jpg" alt="TORCH" className="rewards" alt="Cinque Terre" /></a></li>
+                      <li><a><img src="https://www.static-src.com/siva/asset//11_2016/air-asia-gift-voucher-microsite.jpg" alt="TORCH" className="rewards" alt="Cinque Terre" /></a></li>
+                    </ul>
+                  </li>
                 </ul>
                 <ul className="nav navbar-nav pull-right">
                   <li><img src={cookie.load('user').picture.data.url} className="img-circle" alt="Cinque Terre" /></li>

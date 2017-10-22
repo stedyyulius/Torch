@@ -2,6 +2,25 @@
   color: white;
 }
 
+.rewards{
+  margin-top: 20px;
+  width: 100%;
+}
+
+.dropdown-menu{
+  width: 500px;
+}
+
+.dropdown-menu ul li a{
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.game-modal{
+  width: 100%;
+}
+
 .img-circle{
   padding: 0;
   margin-top: 8px;

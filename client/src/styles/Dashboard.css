@@ -10,6 +10,10 @@
   color: black;
 }
 
+.distance{
+  font-size: 17px;
+}
+
 .online{
   text-align: center;
   border-style: solid;
