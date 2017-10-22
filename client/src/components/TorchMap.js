@@ -12,7 +12,7 @@ const Current = [-6.260708, 106.781617];
 
 var Activity = icon({
     iconUrl: 'https://i.imgur.com/EBgsrAe.png',
-    iconSize: [30, 30],
+    iconSize: [70, 70],
     iconAnchor: [22, 94],
     popupAnchor: [-3, -76],
     shadowSize: [68, 95],
@@ -130,9 +130,11 @@ class TorchMap extends Component {
              icon={Activity}>
             <Popup>
               <span>
-                <b>{m.name}</b>
+                <b className="tooltip-detail">{m.name}</b>
                 <br />
-                <img src={m.image} />
+                <span className="tooltip-detail">{m.createdDate}</span> <hr />
+                <img className="activity-pic tooltip-detail" src={m.image} /><br />
+                <button className="btn btn-success tooltip-detail">Join</button>
               </span>
             </Popup>
           </Marker>          

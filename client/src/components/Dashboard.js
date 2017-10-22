@@ -40,8 +40,32 @@ class Dashboard extends Component {
       <div className="list-group">
         <AddGame />
         <GameModal />
-        {(this.props.isKomsel && !this.props.isActive)
-          ? <div>
+        {(!this.props.isKomsel && this.props.isActive)
+          ?  <div>
+              <p data-toggle="modal" data-target="#AddGame" className="create list-group-item">
+                Create Activity
+                <img className="pull-right" src="https://i.imgur.com/9WhmPjF.png" />
+              </p>
+              <p className="online list-group-item">
+                Online Game
+              </p>
+              {(this.props.games)
+                ? (this.props.games.map((g,i)=>
+                    <div className="col-md-12 list-group-item" key={i} data-toggle="modal" data-target="#DetailGame"
+                      onClick={()=> this.props.getOneData(g)}>
+                      <div className="col-md-4">
+                      <img className="game-icon" src={g.image} alt="game-icon"/>
+                      </div>
+                      <div className="col-md-8">
+                      <p className="game-name">{g.name}</p>
+                      <p className="game-descr">{g.descr}</p>
+                      </div>
+                    </div>
+                  ))
+                : null
+              }
+              </div>
+          :   <div>
               <p className="create list-group-item">
                 Komsel
               </p>
@@ -60,32 +84,7 @@ class Dashboard extends Component {
                 : null
               }
               </div> 
-          :   <div>
-                <p data-toggle="modal" data-target="#AddGame" className="create list-group-item">
-                  Create Activity
-                  <img className="pull-right" src="https://i.imgur.com/9WhmPjF.png" />
-                </p>
-                <p className="online list-group-item">
-                  Online Game
-                </p>
-                {(this.props.games)
-                  ? (this.props.games.map((g,i)=>
-                      <div className="col-md-12 list-group-item" key={i} data-toggle="modal" data-target="#DetailGame"
-                        onClick={()=> this.props.getOneData(g)}>
-                        <div className="col-md-4">
-                        <img className="game-icon" src={g.image} alt="game-icon"/>
-                        </div>
-                        <div className="col-md-8">
-                        <p className="game-name">{g.name}</p>
-                        <p className="game-descr">{g.descr}</p>
-                        </div>
-                      </div>
-                    ))
-                  : null
-                }
-                </div>
         }
-      
       </div>
     )
   }
