@@ -7,7 +7,6 @@
     "countries-cities": "0.0.11",
     "geocoder": "^0.2.3",
     "geodist": "^0.2.1",
-    "geolib": "^2.0.23",
     "google-map-react": "^0.24.0",
     "leaflet": "^1.2.0",
     "react": "^16.0.0",
