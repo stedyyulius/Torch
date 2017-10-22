@@ -52,7 +52,8 @@ class TorchMap extends Component {
   requestJoin(id,i){
     console.log(id);
     let data = {
-      name: cookie.load('user').name
+      name: cookie.load('user').name,
+      image: cookie.load('user').picture.data.url
     }
     console.log(data);
     axios.post(`${api}/request/komsel/join/${id}`,data)
