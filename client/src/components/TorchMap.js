@@ -37,7 +37,7 @@ class TorchMap extends Component {
       isJoin: ''
     }
   }
-  
+
   componentWillMount(){
     this.props.getRooms()
     axios.get(`${api}/komsel`)
@@ -48,7 +48,7 @@ class TorchMap extends Component {
       })
     })
   }
-  
+
   requestJoin(id,i){
     console.log(id);
     let data = {
@@ -71,13 +71,13 @@ class TorchMap extends Component {
 
   render(){
     return(
-      <div>      
+      <div>
         <Map center={Current} zoom={17}>
           <TileLayer
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker 
+          <Marker
             position={[+Current[0],+Current[1]]}
             icon={Me}>
          </Marker>
@@ -85,7 +85,7 @@ class TorchMap extends Component {
          {(this.props.isKomsel && this.state.komsel.length > 0)
            ?  (this.state.komsel.map((k,i)=>
               <Marker
-                key={i} 
+                key={i}
                 position={[+k.location.lat,+k.location.lng]}
                 icon={icon({
                     iconUrl: k.map_image,
@@ -109,7 +109,7 @@ class TorchMap extends Component {
                         : (k.member.map((m,index)=>
                           <div key={index}><b>{m._member.name}</b><br /></div>
                         ))
-                      }      
+                      }
                     <hr />
                     {(this.state.isJoin === i)
                       ? null
@@ -117,15 +117,15 @@ class TorchMap extends Component {
                     }
                   </span>
                 </Popup>
-             </Marker>  
+             </Marker>
             ))
            : null
-         }    
-       </div>    
+         }
+       </div>
         {(this.props.rooms && this.props.isActive === true)
          ?this.props.rooms.map((m,index) => (
            <Marker
-             key={index} 
+             key={index}
              position={[+m.rules.offline.location.lat,+m.rules.offline.location.lng]}
              icon={Activity}>
             <Popup>
@@ -137,7 +137,7 @@ class TorchMap extends Component {
                 <button className="btn btn-success tooltip-detail">Join</button>
               </span>
             </Popup>
-          </Marker>          
+          </Marker>
         ))
         :<div></div>
       }
