@@ -103,6 +103,8 @@ const editKomsel = (req, res) => {
       if (typeof req.body.badge !== 'undefined') komsel.badge = {
         descr: req.body.bage
       }
+
+      // komsel.member = []
       if (!(Object.keys(location).length === 0 && location.constructor === Object)) komsel.location = location
       komsel.save((err, komsel) => {
         res.send(err? {err:err} : komsel)

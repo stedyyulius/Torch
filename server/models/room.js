@@ -28,7 +28,7 @@ let roomSchema = new Schema ({
   },
   image:String,
   image2:String,
-  players: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  players: [String],
   tipe: String //event sama kompetisi
 })
 

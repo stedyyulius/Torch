@@ -169,34 +169,35 @@ const editStatusPlayer = (req, res) => {
 const addPlayer = (req, res) => {
   //add player ke room
   //add poin ke player
-  let email = req.body.email
+  // let email = req.body.email
+  let name = req.body.name
   let roomId = req.params.id
 
-  User.findOne({email: email}, (err,user)=> {
-    if (err) res.send({err:'Invalid user'})
+  // User.findOne({email: email}, (err,user)=> {
+    // if (err) res.send({err:'Invalid user'})
+    // else {
+  // let id = user._id
+  Room.findById(roomId, (err, room) => {
+    if (err) res.send({err:'Room not found'})
     else {
-      let id = user._id
-      Room.findById(roomId, (err, room) => {
-        if (err) res.send({err:'Room not found'})
+      if (typeof room.players === 'undefined') room.players = []
+      room.players.push(name)
+      // room.players = []
+      room.save((err,room) => {
+        if (err) res.send({err:err})
         else {
-          if (typeof room.players === 'undefined') room.players = []
-
-          room.players.push(id)
-          room.save((err,room) => {
-            if (err) res.send({err:err})
-            else {
-              user.poin = user.poin + 10
-              user.save((err, user)=> {
-                res.send(err? {err:err} : room)
-              })
-            }
-          })
+          // user.poin = user.poin + 10
+          // user.save((err, user)=> {
+            res.send(err? {err:err} : room)
+          // })
         }
       })
-
     }
-
   })
+
+    // }
+
+  // })
 }
 
 module.exports = {
