@@ -38,7 +38,7 @@ const addKomsel = (req, res) => {
   let name = req.body.name
   // let decoded = login.getUserDetail(req.headers.token)
   // let user = decoded._id || ''
-  User.findOne({name: name}, (err,user)=>{
+  // User.findOne({name: name}, (err,user)=>{
     let komsel = {
       name: req.body.name || '',
       username: req.body.username || '',
@@ -47,8 +47,8 @@ const addKomsel = (req, res) => {
         lat: req.body.lat || '',
         city: req.body.city || '',
       },
-      _creator: user._id,
-      _leader: user._id,
+      _creator: req.body.user,
+      _leader: req.body.user,
       _church: req.body.church || '',
       theme: req.body.theme || '',
       ayat: req.body.ayat || ''
@@ -70,7 +70,7 @@ const addKomsel = (req, res) => {
         res.send(n_komsel)
       }
     })
-  })
+  // })
 
 }
 

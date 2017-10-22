@@ -26,7 +26,7 @@ let roomSchema = new Schema ({
     },
     maxRegis: Date
   },
-  createdDate: {type: Date, default: Date.now},
+  createdDate: String,
   image:String,
   image2:String,
   players: [String],

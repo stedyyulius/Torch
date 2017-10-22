@@ -47,8 +47,7 @@ const addRoom = (req, res) => {
             image: req.body.image ||'',
             tipe: req.body.tipe || 'competition', //event ato competition
             creator: req.body.creator || '',
-            // _creatorKomsel: req.body.creator_komsel,
-            // creatorKomselName: komsel.name || '',
+            createdDate: new Date().toLocaleDateString('id').split('T')[0],
             descr: req.body.descr || ''
           }
 
