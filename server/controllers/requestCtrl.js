@@ -62,7 +62,7 @@ const addJoinKomsel = (req, res) => {
             to: `stedy.yulius@orori.com`,
             subject: `Request join from ${req.body.name}`,
             text: 'Request',
-            html: `<button onclick="accept()" class=btn btn-primary>Accept</button><button class=btn btn-danger>Reject</button>`
+            html: `<img src="${req.body.image}"/><br/><button onclick="accept()" class=btn btn-primary>Accept</button><button class=btn btn-danger>Reject</button>`
           }
 
           transport.sendMail(job, (error, info) => {
