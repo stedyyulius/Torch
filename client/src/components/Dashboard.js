@@ -27,14 +27,14 @@ class Dashboard extends Component {
         res.data[i].distance = geodist(
           {lat: res.data[i].location.lat, lon: res.data[i].location.lng},
           {lat: -6.260708, lon: 106.781617},
-        {exact: true, unit: 'meters'});
-      }  
+          {exact: true, unit: 'meters'});
+      }
       this.setState({
         komsel: res.data
       })
     })
   }
-  
+
   render(){
     return(
       <div className="list-group">
@@ -43,11 +43,8 @@ class Dashboard extends Component {
         {(!this.props.isKomsel && this.props.isActive)
           ?  <div>
               <p data-toggle="modal" data-target="#AddGame" className="create list-group-item">
-                Create Activity
+                Create Hackhaton or Meetup
                 <img className="pull-right" src="https://i.imgur.com/9WhmPjF.png" />
-              </p>
-              <p className="online list-group-item">
-                Online Game
               </p>
               {(this.props.games)
                 ? (this.props.games.map((g,i)=>
@@ -67,7 +64,7 @@ class Dashboard extends Component {
               </div>
           :   <div>
               <p className="create list-group-item">
-                Komsel
+                Hackhaton
               </p>
               {(this.state.komsel)
                 ? (this.state.komsel.map((k,i)=>
@@ -83,7 +80,7 @@ class Dashboard extends Component {
                   ))
                 : null
               }
-              </div> 
+              </div>
         }
       </div>
     )

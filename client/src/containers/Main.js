@@ -14,51 +14,51 @@ class Main extends Component {
   constructor(props){
     super(props)
     this.state={
-      terminalIcons: true,
-      wazeIcons: true
+      meetup: true,
+      hackhaton: true
     }
   }
-  
+
   componentWillMount(){
     if(!cookie.load('user')){
       window.location = '/login'
     }
   }
-  
+
   logout(){
     cookie.remove('user')
     window.location = '/login'
   }
-  
-  
-  wazeIcons(){
-    if(this.state.wazeIcons === false){
+
+
+  hackhaton(){
+    if(this.state.hackhaton === false){
       this.setState({
-        wazeIcons: true
+        hackhaton: true
       })
       this.props.isKomsel(true)
     } else{
       this.setState({
-        wazeIcons: false
+        hackhaton: false
       })
       this.props.isKomsel(false)
     }
   }
-  
-  terminalIcons(){
-    if(this.state.terminalIcons === false){
+
+  meetup(){
+    if(this.state.meetup === false){
       this.setState({
-        terminalIcons: true
+        meetup: true
       })
       this.props.isActivity(true)
     } else{
       this.setState({
-        terminalIcons: false
+        meetup: false
       })
       this.props.isActivity(false)
     }
   }
-  
+
   render() {
     return (
       <div className="App">
@@ -66,17 +66,17 @@ class Main extends Component {
           <nav className="navbar navbar-inverse">
             <div className="container-fluid">
               <div className="navbar-header">
-                <a className="navbar-brand" href="#"><img src="https://i.imgur.com/HUIETSB.png" alt="TORCH" /></a>
+                <a className="navbar-brand" href="#"><img src="http://www.onlygfx.com/wp-content/uploads/2016/07/eye-logo-2.png" alt="TORCH" /></a>
               </div>
               <div className="navbar-collapse collapse">
                 <ul className="nav navbar-nav">
-                {(this.state.wazeIcons === true)
-                  ? <li><a onClick={()=> this.wazeIcons()}><span className="navtext">Clear Komsel</span></a></li>
-                  : <li><a onClick={()=> this.wazeIcons()}><span className="navtext">Show Komsel</span></a></li>
+                {(this.state.hackhaton === true)
+                  ? <li><a onClick={()=> this.hackhaton()}><span className="navtext">Clear Hackhaton</span></a></li>
+                  : <li><a onClick={()=> this.hackhaton()}><span className="navtext">Show Hackhaton</span></a></li>
                   }
-                  {(this.state.terminalIcons === true)
-                  ? <li><a onClick={()=> this.terminalIcons()}><span className="navtext">Clear Activity</span></a></li>
-                  : <li><a onClick={()=> this.terminalIcons()}><span className="navtext">Show Activity</span></a></li>
+                  {(this.state.meetup === true)
+                  ? <li><a onClick={()=> this.meetup()}><span className="navtext">Clear Meetup</span></a></li>
+                  : <li><a onClick={()=> this.meetup()}><span className="navtext">Show Meetup</span></a></li>
                   }
                   <li className="dropdown">
                     <a className="dropdown-toggle" data-toggle="dropdown"><span className="navtext">Achievement</span></a>
@@ -105,7 +105,7 @@ class Main extends Component {
                 </ul>
                 <ul className="nav navbar-nav pull-right">
                   <li><img src={cookie.load('user').picture.data.url} className="img-circle" alt="Cinque Terre" /></li>
-                  <li><a><span className="navtext">{cookie.load('user').name}</span></a></li>                  
+                  <li><a><span className="navtext">{cookie.load('user').name}</span></a></li>
                   <li><a onClick={()=> this.logout()}><span className="navtext">Logout</span></a></li>
                 </ul>
               </div>
@@ -127,7 +127,7 @@ class Main extends Component {
 
 const mapStateToProps = (state) =>{
   return{
-    
+
   }
 }
 
