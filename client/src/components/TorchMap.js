@@ -98,11 +98,9 @@ class TorchMap extends Component {
                 })}>
                 <Popup>
                   <span>
-                    <span className="tooltip-detail">{k.poin} </span><br />
+                    <span className="tooltip-detail">{k.poin}</span><br />
                     <b className="tooltip-detail">{k.name}</b> <br />
                     <img className="komsel tooltip-detail" src={k.image} /> <br />
-                    <span className="tooltip-detail">{k.theme}</span><br />
-                    <span className="tooltip-detail">{k.ayat}</span>
                     <hr />
                     <span className="leader">{k._leader.name}</span>
                       {(k.member.length === 0)
