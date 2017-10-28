@@ -106,7 +106,7 @@ class TorchMap extends Component {
                     <hr />
                     <span className="leader">{k._leader.name}</span>
                       {(k.member.length === 0)
-                        ? (<b>No Member Yet</b>)
+                        ? (<b className="tooltip-detail">No Member Yet</b>)
                         : (k.member.map((m,index)=>
                           <div key={index}><b>{m._member.name}</b><br /></div>
                         ))
@@ -114,7 +114,15 @@ class TorchMap extends Component {
                     <hr />
                     {(this.state.isJoin === i)
                       ? null
-                      : <button className="btn btn-success tooltip-detail" onClick={()=> this.requestJoin(k._id,i)}>Join</button>
+                      : <div className="tooltip-detail">
+                        <button className="btn btn-success"
+                        onClick={()=> this.requestJoin(k._id,i)}>
+                        Join
+                        </button>
+                        <button className="btn btn-primary">
+                        Visit Vr
+                        </button>
+                        </div>
                     }
                   </span>
                 </Popup>
