@@ -28,7 +28,7 @@ class AddGame extends React.Component {
       cities:cities
     })
   }
-  
+
   getDot(e){
     this.setState({
       lat: e.lat,
@@ -49,7 +49,7 @@ class AddGame extends React.Component {
     }
   })
   }
-  
+
   createActivity(){
     let game = {
       isOnline : this.state.isOnline,
@@ -67,38 +67,38 @@ class AddGame extends React.Component {
       console.log(res);
     })
   }
-  
+
   render () {
-    return (  
+    return (
 <div className="modal" id="AddGame" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div className="modal-dialog">
   <div className="modal-content">
     <div className="modal-header">
       <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-      <h4 className="modal-title" id="myModalLabel">Create Activity</h4>
+      <h4 className="modal-title" id="myModalLabel">Create Event</h4>
     </div>
     <div className="modal-body">
       <form>
         <div className="form-group">
           <select defaultValue="Select Game Type" onChange={(e)=>this.setState({isOnline: e.target.value})}>
             <option disabled>Select Game Type</option>
-            <option value={false}>offline</option>
-            <option value={true}>online</option>
+            <option value={false}>Meetup</option>
+            <option value={true}>Hackhaton</option>
           </select>
         </div>
 <div className="form-group">
   <label htmlFor="exampleInputEmail1">Activity Name</label>
-  <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Activity Name" 
+  <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Activity Name"
   onChange={(e)=> this.setState({name: e.target.value})} />
 </div>
 <div className="form-group">
   <label htmlFor="exampleInputEmail1">Description</label>
-  <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Description" 
+  <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Description"
   onChange={(e)=> this.setState({descr: e.target.value})} />
 </div>
 <div className="form-group">
   <label htmlFor="exampleInputPassword1">Image</label>
-  <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Image" 
+  <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Image"
   onChange={(e)=> this.setState({image: e.target.value})} />
 </div>
 <div className="form-group">
@@ -136,7 +136,7 @@ class AddGame extends React.Component {
 
 const mapStateToProps = (state) =>{
   return{
-    
+
   }
 }
 

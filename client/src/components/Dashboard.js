@@ -43,7 +43,7 @@ class Dashboard extends Component {
         {(!this.props.isKomsel && this.props.isActive)
           ?  <div>
               <p data-toggle="modal" data-target="#AddGame" className="create list-group-item">
-                Create Hackhaton or Meetup
+                Create Event
                 <img className="pull-right" src="https://i.imgur.com/9WhmPjF.png" />
               </p>
               {(this.props.games)
