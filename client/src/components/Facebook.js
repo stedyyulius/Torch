@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import FacebookLogin from 'react-facebook-login';
-import axios from 'axios'
 import cookie from 'react-cookies'
 
 import { isCheck } from '../actions/index'
-import { api } from '../config'
 
 class Facebook extends Component{
   constructor(props){

@@ -6,6 +6,7 @@ import games from './games'
 import isActive from './isActivity'
 import isKomsel from './isKomsel'
 import OneData from './onedata'
+import redirect from './redirect'
 
 export default combineReducers({
   isCheck: isCheck,
@@ -13,5 +14,6 @@ export default combineReducers({
   games: games,
   isActive: isActive,
   isKomsel: isKomsel,
-  onedata: OneData
+  onedata: OneData,
+  redirect: redirect
 })

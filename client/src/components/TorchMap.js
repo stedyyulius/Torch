@@ -8,8 +8,6 @@ import cookie from 'react-cookies'
 import { getRooms } from '../actions/index'
 import { api } from '../config'
 
-const Current = [-6.260708, 106.781617];
-
 var Activity = icon({
     iconUrl: 'https://i.imgur.com/EBgsrAe.png',
     iconSize: [70, 70],
@@ -20,7 +18,7 @@ var Activity = icon({
 });
 
 var Me = icon({
-    iconUrl: 'https://i.imgur.com/zwHU1wU.png',
+    iconUrl: 'http://www.netanimations.net/arrowkk2.gif',
     iconSize: [130, 130],
     iconAnchor: [22, 94],
     popupAnchor: [-3, -76],
@@ -34,7 +32,22 @@ class TorchMap extends Component {
     this.state={
       rooms:[],
       komsel: [],
-      isJoin: ''
+      isJoin: '',
+      current: [-6.260708, 106.781617]
+    }
+  }
+  
+  async componentWillReceiveProps(){
+    let waitRedirect = this.props.redirect !== null
+    await waitRedirect
+    if(this.props.redirect){
+      let newCoordinate = {}
+      newCoordinate.lat = +this.props.redirect.lat + 0.0006
+      newCoordinate.lng = +this.props.redirect.lng - 0.0003
+      this.setState({
+        current: [newCoordinate.lat,newCoordinate.lng]
+      })
+      console.log(this.state.current);
     }
   }
 
@@ -73,13 +86,13 @@ class TorchMap extends Component {
   render(){
     return(
       <div>
-        <Map center={Current} zoom={17}>
+        <Map center={this.state.current} zoom={17}>
           <TileLayer
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           <Marker
-            position={[+Current[0],+Current[1]]}
+            position={[+this.state.current[0],+this.state.current[1]]}
             icon={Me}>
          </Marker>
          <div className="tooltip-detail">
@@ -155,10 +168,12 @@ class TorchMap extends Component {
 }
 
 const mapStateToProps = (state) =>{
+  console.log(state.rooms);
   return{
     rooms: state.rooms,
     isActive: state.isActive,
-    isKomsel: state.isKomsel
+    isKomsel: state.isKomsel,
+    redirect: state.redirect
   }
 }
 

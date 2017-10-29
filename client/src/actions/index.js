@@ -56,6 +56,16 @@ const isKomsel = (status) =>{
   }
 }
 
+const redirect = (lat,lng) =>{
+  let coordinates = {}
+  coordinates.lat = lat
+  coordinates.lng = lng
+  return{
+    type: 'Redirect',
+    payload: coordinates
+  }
+}
+
 
 export{
   isCheck,
@@ -63,5 +73,6 @@ export{
   gameList,
   getOneData,
   isActivity,
-  isKomsel  
+  isKomsel,
+  redirect  
 }

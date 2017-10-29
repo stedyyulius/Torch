@@ -6,7 +6,7 @@ import geodist from 'geodist'
 
 import GameModal from './GameModal'
 
-import { gameList, getOneData } from '../actions/index'
+import { gameList, getOneData, redirect } from '../actions/index'
 import { api } from '../config'
 
 import '../styles/Dashboard.css'
@@ -68,7 +68,7 @@ class Dashboard extends Component {
               </p>
               {(this.state.komsel)
                 ? (this.state.komsel.map((k,i)=>
-                    <div className="col-md-12 list-group-item" key={i}>
+                    <div className="col-md-12 list-group-item" key={i} onClick={()=> this.props.redirect(k.location.lat,k.location.lng)}>
                       <div className="col-md-4">
                       <img className="game-icon" src={k.map_image} alt="game-icon"/>
                       </div>
@@ -100,7 +100,8 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
   return{
     gameList: () => dispatch(gameList()),
-    getOneData: (data) => dispatch(getOneData(data))
+    getOneData: (data) => dispatch(getOneData(data)),
+    redirect: (lat,lng) => dispatch(redirect(lat,lng))
   }
 }
 
