@@ -57,6 +57,8 @@ let komselSchema = new Schema ({
       joinDate: {type: Date, default: Date.now}
     }
   ],
+  date: String,
+  createdBy: String,
   _creator: {type: Schema.Types.ObjectId, ref: 'User'},
   _leader: {type: Schema.Types.ObjectId, ref: 'User'},
   _church: {type: Schema.Types.ObjectId, ref: 'Church'}

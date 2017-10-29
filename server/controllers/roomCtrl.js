@@ -84,7 +84,11 @@ const editRoom = (req, res) => {
     if (err) res.send({err:err})
     else {
       if (typeof req.body.isOnline !== 'undefined') room.isOnline = req.body.isOnline
+      if (typeof req.body.name !== 'undefined') room.name = req.body.name
+      if (typeof req.body.descr !== 'undefined') room.descr = req.body.descr
+      if (typeof req.body.creator !== 'undefined') room.creator = req.body.creator
       if (typeof req.body.image2 !== 'undefined') room.image2 = req.body.image2
+      if (typeof req.body.createdDate !== 'undefined') room.createdDate = req.body.createdDate
 
       room.save((err,room) => {
         res.send(err?{err:err} :room)
