@@ -94,6 +94,8 @@ const editKomsel = (req, res) => {
       if (typeof req.body.theme !== 'undefined') komsel.theme = req.body.theme
       if (typeof req.body.poin !== 'undefined') komsel.poin = req.body.poin
       if (typeof req.body.ayat !== 'undefined') komsel.ayat = req.body.ayat
+      if (typeof req.body.date !== 'undefined') komsel.date = req.body.date
+      if (typeof req.body.createdBy !== 'undefined') komsel.createdBy = req.body.createdBy
       if (typeof req.body.lng !== 'undefined') location.lng = req.body.lng
       if (typeof req.body.lat !== 'undefined') location.lat = req.body.lat
       if (typeof req.body.city !== 'undefined') location.city = req.body.city
@@ -104,7 +106,7 @@ const editKomsel = (req, res) => {
         descr: req.body.bage
       }
 
-      // komsel.member = komsel.member.filter((m)=> `${m._member.name}` !== 'Pella De Vega' )
+      // komsel.member = komsel.member.filter((m)=> `${m._member.name}` !== 'Stedy Yulius' )
       if (!(Object.keys(location).length === 0 && location.constructor === Object)) komsel.location = location
       komsel.save((err, komsel) => {
         res.send(err? {err:err} : komsel)
